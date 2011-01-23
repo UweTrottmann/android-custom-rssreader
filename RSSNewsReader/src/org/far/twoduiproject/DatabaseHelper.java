@@ -30,6 +30,13 @@ public class DatabaseHelper {
 		this.db = new OpenHelper(context).getWritableDatabase();
 	}
 
+	/**
+	 * Activities should call this to get a reference to the database helper.
+	 * This class is a singleton to avoid opening of the database multiple
+	 * times.
+	 * @param context
+	 * @return the global instance of DatabaseHelper
+	 */
 	public DatabaseHelper getInstance(Context context) {
 		if (_instance == null) {
 			_instance = new DatabaseHelper(context);
