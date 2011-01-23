@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="/shared/bsp/xsl/rss/nolsol.xsl"?>
+
+<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">  
+  <channel> 
+    <title>BBC News - Technology</title>  
+    <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology/</link>  
+    <description>The latest stories from the Technology section of the BBC News web site.</description>  
+    <language>en-gb</language>  
+    <lastBuildDate>Sat, 22 Jan 2011 02:21:33 GMT</lastBuildDate>  
+    <copyright>Copyright: (C) British Broadcasting Corporation, see http://news.bbc.co.uk/2/hi/help/rss/4498287.stm for terms and conditions of reuse.</copyright>  
+    <ttl>15</ttl>  
+    <atom:link href="http://feeds.bbci.co.uk/news/technology/rss.xml" rel="self" type="application/rss+xml"/>  
+    <item> 
+      <title>Facebook offering raises $1.5bn</title>  
+      <description>Facebook says it has raised $1.5bn from investors, valuing the world's most popular social networking site at $50bn.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12257786</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12257786</guid>  
+      <pubDate>Fri, 21 Jan 2011 23:37:03 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50839000/jpg/_50839896_facebook.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50839000/jpg/_50839898_facebook.jpg"/> 
+    </item>  
+    <item> 
+      <title>Lush hackers cash in stolen cards</title>  
+      <description>Cyber thieves are cashing in after stealing credit cards in a hack attack on the website of cosmetics firm Lush.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12254282</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12254282</guid>  
+      <pubDate>Fri, 21 Jan 2011 17:48:46 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50900000/jpg/_50900828_lushonfacebook,lush.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50900000/jpg/_50900824_lushonfacebook,lush.jpg"/> 
+    </item>  
+    <item> 
+      <title>Scholar rejects Google 'attack'</title>  
+      <description>A Harvard researcher critical of Google says the company is waging a campaign to discredit him.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12241395</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12241395</guid>  
+      <pubDate>Fri, 21 Jan 2011 11:04:40 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50886000/jpg/_50886385_50880135.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50886000/jpg/_50886386_50880135.jpg"/> 
+    </item>  
+    <item> 
+      <title>Illegal gamers costing 'billions'</title>  
+      <description>More than £1 billion in sales and hundreds of jobs are lost every year because of pirate video games, according to the group which represents the industry.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/newsbeat/12248010</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/newsbeat/12248010</guid>  
+      <pubDate>Fri, 21 Jan 2011 08:54:07 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50890000/jpg/_50890680_pa_tv.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50890000/jpg/_50890615_pa_tv.jpg"/> 
+    </item>  
+    <item> 
+      <title>Mobiles attract hi-tech thieves</title>  
+      <description>Virus writers and criminals are moving away from Windows and turning their attention to mobiles, suggests a report.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12249624</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12249624</guid>  
+      <pubDate>Fri, 21 Jan 2011 11:06:11 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50893000/jpg/_50893410_mobilephone,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50893000/jpg/_50893409_mobilephone,bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>Microsoft explains 'phantom data'</title>  
+      <description>Microsoft confirms that some Windows Phone 7 handsets are sending and receiving "phantom data" and says it has identified a fault.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12238367</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12238367</guid>  
+      <pubDate>Thu, 20 Jan 2011 11:10:11 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49461000/jpg/_49461020_010395657-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49461000/jpg/_49461022_010395657-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>HTC smartphone profits rise 160%</title>  
+      <description>Smartphone maker HTC saw net profits rise 160% during the October to December quarter when compared with a year earlier.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12250494</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12250494</guid>  
+      <pubDate>Fri, 21 Jan 2011 10:47:56 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50893000/jpg/_50893175_50893170.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50893000/jpg/_50893177_50893170.jpg"/> 
+    </item>  
+    <item> 
+      <title>Amazon buys Lovefilm DVD service</title>  
+      <description>Web retail giant Amazon is set to buy up Britain's leading DVD and online movie rental service Lovefilm for an undisclosed sum.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12239314</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12239314</guid>  
+      <pubDate>Thu, 20 Jan 2011 11:47:23 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50877000/jpg/_50877357_50877349.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50877000/jpg/_50877358_50877349.jpg"/> 
+    </item>  
+    <item> 
+      <title>Facebook 'led to Mexico suspect'</title>  
+      <description>Mexican media say a Facebook post helped lead police to the suspect in the shooting of Paraguayan footballer Salvador Cabanas.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/world-latin-america-12246233</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/world-latin-america-12246233</guid>  
+      <pubDate>Thu, 20 Jan 2011 23:57:08 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50888000/jpg/_50888415_balderasrtr.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50888000/jpg/_50888417_balderasrtr.jpg"/> 
+    </item>  
+    <item> 
+      <title>Web images to get expiration date</title>  
+      <description>Software that gives images an expiration date may give a helping hand to anyone that has ever posted embarrassing images to a website.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12215921</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12215921</guid>  
+      <pubDate>Thu, 20 Jan 2011 12:19:12 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50878000/jpg/_50878862_50878855.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50880000/jpg/_50880795_50880794.jpg"/> 
+    </item>  
+    <item> 
+      <title>Google fight over Spanish links</title>  
+      <description>Google has challenged Spain's data watchdog in court over claims that it invades personal privacy.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12239674</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12239674</guid>  
+      <pubDate>Thu, 20 Jan 2011 12:42:49 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50880000/jpg/_50880129_50877458.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50880000/jpg/_50880131_50877458.jpg"/> 
+    </item>  
+    <item> 
+      <title>Swarm of net satellites planned</title>  
+      <description>A Canadian company announces a plan to put 78 small satellites in orbit to link remote regions to the internet's fibre backbone.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/science-environment-12238771</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/science-environment-12238771</guid>  
+      <pubDate>Thu, 20 Jan 2011 11:07:20 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50876000/jpg/_50876809_50876808.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50876000/jpg/_50876807_50876806.jpg"/> 
+    </item>  
+    <item> 
+      <title>Twitter chronicles 1,000 days of JFK</title>  
+      <description>The John F Kennedy Presidential Library in Boston chronicles the president's 1,000 days in office on the micro-blogging website Twitter.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/world-us-canada-12246959</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/world-us-canada-12246959</guid>  
+      <pubDate>Thu, 20 Jan 2011 22:57:44 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50889000/jpg/_50889005_kennedy.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50889000/jpg/_50889001_kennedy.jpg"/> 
+    </item>  
+    <item> 
+      <title>Playboy iPad app 'to show nudity'</title>  
+      <description>Playboy founder Hugh Hefner claims a new iPad app due to be released in March will feature uncensored pornographic pictures.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/newsbeat/12229479</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/newsbeat/12229479</guid>  
+      <pubDate>Thu, 20 Jan 2011 06:21:43 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50869000/jpg/_50869754_playboylogo.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50875000/jpg/_50875390_getty_playboy144.jpg"/> 
+    </item>  
+    <item> 
+      <title>Why record golf drive stands unbeaten</title>  
+      <description>Why has technology not made breaking the 35-year old record much easier?</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9269507.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9269507.stm</guid>  
+      <pubDate>Fri, 10 Dec 2010 08:45:50 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50351000/jpg/_50351324_107335433.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50358000/jpg/_50358485_107335433.jpg"/> 
+    </item>  
+    <item> 
+      <title>Who is watching you on CCTV?</title>  
+      <description>With the UK one of the heaviest users of CCTV in the world, businesses are seeing an opportunity to offer the amateur a chance to look at the footage from a different angle.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9232158.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9232158.stm</guid>  
+      <pubDate>Sat, 27 Nov 2010 03:43:43 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50167000/jpg/_50167495_006541093-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50167000/jpg/_50167496_006541093-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Hack opens up Microsoft Kinect</title>  
+      <description>Developers discover a variety of alternative uses for the motion-sensing device</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9210071.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9210071.stm</guid>  
+      <pubDate>Sat, 20 Nov 2010 08:54:09 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50073000/jpg/_50073070_untitled-2.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50072000/jpg/_50072919_untitled-2.jpg"/> 
+    </item>  
+    <item> 
+      <title>YouTube movie nearing completion</title>  
+      <description>A film made up entirely of clips uploaded to YouTube is almost ready for its premiere</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11986356</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11986356</guid>  
+      <pubDate>Wed, 15 Dec 2010 09:46:17 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50422000/jpg/_50422316_71851738.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50422000/jpg/_50422314_lifeinaday.jpg"/> 
+    </item>  
+    <item> 
+      <title>Life goes online after death</title>  
+      <description>Researchers explore how people will remember lost relatives in the future</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11900774</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11900774</guid>  
+      <pubDate>Fri, 03 Dec 2010 15:39:42 GMT</pubDate>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50268000/jpg/_50268394_50268391.jpg"/> 
+    </item>  
+    <item> 
+      <title>Printing objects in the home</title>  
+      <description>3D printing offers the chance to dispense with a trip to the shops and print out goods</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11834044</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11834044</guid>  
+      <pubDate>Thu, 25 Nov 2010 09:53:07 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50136000/jpg/_50136285_50136277.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50136000/jpg/_50136283_50136277.jpg"/> 
+    </item>  
+    <item> 
+      <title>The World after Wikileaks</title>  
+      <description>'This is democracy's Napster moment', says regular commentator Bill Thompson</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12007616</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12007616</guid>  
+      <pubDate>Thu, 16 Dec 2010 11:46:00 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50112000/jpg/_50112124_candles,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50454000/jpg/_50454284_50454277.jpg"/> 
+    </item>  
+    <item> 
+      <title>The birth of a UK tech giant</title>  
+      <description>Bill Thompson recalls the early days of a UK tech giant</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11821504</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11821504</guid>  
+      <pubDate>Tue, 23 Nov 2010 12:43:27 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50112000/jpg/_50112124_candles,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50112000/jpg/_50112123_candles,bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>The rights and wrongs of digital books</title>  
+      <description>The rising popularity of e-books highlights many modern dilemmas, says Bill Thompson</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11693222</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11693222</guid>  
+      <pubDate>Thu, 04 Nov 2010 14:16:45 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49787000/jpg/_49787662_anopenbook,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49787000/jpg/_49787660_anopenbook,bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>Cosplay: From screen to stage</title>  
+      <description>Tech Know meets the 'cosplayers' who make and wear costumes from video games</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11929113</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11929113</guid>  
+      <pubDate>Tue, 07 Dec 2010 09:16:39 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50319000/jpg/_50319802_nightelf,hazelcogan.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50319000/jpg/_50319800_draeneihorns,sophiepickford.jpg"/> 
+    </item>  
+    <item> 
+      <title>The sweet sound of the shred</title>  
+      <description>Meet the shredders, who create music and videos that make rock stars sound rubbish</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11643187</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11643187</guid>  
+      <pubDate>Thu, 28 Oct 2010 10:31:58 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49687000/jpg/_49687616_guitarplayer,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49687000/jpg/_49687614_guitarplayer,bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>Hacking everyday objects</title>  
+      <description>Taking time to get to know the artists who hack everyday objects in their work</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-11430070</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-11430070</guid>  
+      <pubDate>Wed, 29 Sep 2010 08:22:44 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49285000/jpg/_49285669_poledancingrobot,bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49290000/jpg/_49290943_smokingrobot,bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>Larry Page returns to Google helm</title>  
+      <description>Google co-founder Larry Page is to become chief executive of the US internet search giant in April.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12248515</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12248515</guid>  
+      <pubDate>Fri, 21 Jan 2011 09:48:19 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50890000/jpg/_50890548_jex_932021_de27-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50890000/jpg/_50890944_jex_932021_de27-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>The weird and wonderful from CES</title>  
+      <description>Richard Taylor looks at some of the stranger gadgets from CES in Las Vegas.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9369650.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9369650.stm</guid>  
+      <pubDate>Fri, 21 Jan 2011 15:41:16 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50898000/jpg/_50898624_jex_932583_de28-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50898000/jpg/_50898625_jex_932583_de28-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>How single lens 3D cameras work</title>  
+      <description>Spencer Kelly looks at the idea behind a new 3D camera that does away with the two lenses that, up until now, have been needed to add depth.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9362275.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9362275.stm</guid>  
+      <pubDate>Wed, 19 Jan 2011 09:49:07 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50806000/jpg/_50806147_spen_3dtv.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50806000/jpg/_50806131_spen_3dtv.jpg"/> 
+    </item>  
+    <item> 
+      <title>Teenager's game tops app chart</title>  
+      <description>Fourteen year-old's game takes Angry Birds' number 1 spot on the app download chart</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12241564</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12241564</guid>  
+      <pubDate>Thu, 20 Jan 2011 13:39:46 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50881000/jpg/_50881706_011002221-2.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50881000/jpg/_50881708_011002221-2.jpg"/> 
+    </item>  
+    <item> 
+      <title>Colour e-readers set for 2011 release</title>  
+      <description>Richard Taylor reviews the introduction of colour "digital ink" and considers whether it will challenge the ever-growing tablet market.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9362255.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9362255.stm</guid>  
+      <pubDate>Tue, 18 Jan 2011 09:23:34 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50805000/jpg/_50805847_ereader1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50805000/jpg/_50805822_ereader1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Role of social media in Tunisia</title>  
+      <description>Newsnight's David Grossman reports on whether social media tools such as Twitter are fuelling the Tunisian protests, or whether the concept of a Twitter revolution has become the lazy and dangerous cliché of Western media.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/newsnight/9365249.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/newsnight/9365249.stm</guid>  
+      <pubDate>Tue, 18 Jan 2011 12:14:30 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50847000/jpg/_50847516_bbctunisiatweet.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50847000/jpg/_50847517_bbctunisiatweet.jpg"/> 
+    </item>  
+    <item> 
+      <title>Can Apple prosper without Steve Jobs?</title>  
+      <description>Investors worry as Apple's Steve Jobs announces he is to take further medical leave. David Grossman examines why he is so essential for Apple's success.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/newsnight/9366742.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/newsnight/9366742.stm</guid>  
+      <pubDate>Wed, 19 Jan 2011 14:44:25 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50867000/jpg/_50867973_steve_jobs_reuters.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50867000/jpg/_50867974_steve_jobs_reuters.jpg"/> 
+    </item>  
+    <item> 
+      <title>Wireless photos with wifi memory card</title>  
+      <description>Router contained within a memory card means photos can be transferred to other devices on the go.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/programmes/click_online/9362211.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/programmes/click_online/9362211.stm</guid>  
+      <pubDate>Mon, 17 Jan 2011 11:22:32 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50829000/jpg/_50829684_eyefi1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50805000/jpg/_50805307_eyefi1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Winning IT</title>  
+      <description>The cables and computers you need to run an Olympics</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12249326</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12249326</guid>  
+      <pubDate>Sat, 22 Jan 2011 00:02:34 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50902000/jpg/_50902850_004723473-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50902000/jpg/_50902846_004723473-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Technological shopping</title>  
+      <description>How online retailers harness technology to keep them ahead</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12243994</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12243994</guid>  
+      <pubDate>Fri, 21 Jan 2011 00:05:09 GMT</pubDate>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50888000/jpg/_50888102_amazon624.jpg"/> 
+    </item>  
+    <item> 
+      <title>Virus alert</title>  
+      <description>Can the web be used to track diseases like flu?</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12176180</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12176180</guid>  
+      <pubDate>Wed, 19 Jan 2011 11:28:20 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50787000/jpg/_50787682_disease2.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50787000/jpg/_50787684_disease1.jpg"/> 
+    </item>  
+    <item> 
+      <title>X marks the spot</title>  
+      <description>How volunteers put a Kenyan slum town on the map</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12164081</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12164081</guid>  
+      <pubDate>Tue, 18 Jan 2011 00:20:57 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50754000/jpg/_50754294_66-untitled-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50754000/jpg/_50754298_144-kibera-5537.jpg"/> 
+    </item>  
+    <item> 
+      <title>Facebook teaching</title>  
+      <description>How schools can use social media to engage pupils</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/technology-12193773</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/technology-12193773</guid>  
+      <pubDate>Sat, 15 Jan 2011 00:02:34 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50808000/jpg/_50808458_010938042-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50808000/jpg/_50808453_facebook304.jpg"/> 
+    </item>  
+    <item> 
+      <title>Situations vacant</title>  
+      <description>Is it time for job seekers to tear up the CV and go online?</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12194581</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12194581</guid>  
+      <pubDate>Sun, 16 Jan 2011 16:36:47 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50810000/jpg/_50810354_leafletafpgetty624.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50810000/jpg/_50810359_jobseekerafpgetty624.jpg"/> 
+    </item> 
+  </channel> 
+</rss>
