@@ -1,5 +1,6 @@
 package org.far.twoduiproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,6 +45,11 @@ public class DatabaseHelper {
 		return _instance;
 	}
 	
+	public void addItem(ContentValues itemvalues, int categoryid) {
+		itemvalues.put(CATEGORY_ID, categoryid);
+		db.insert(ITEM_TABLE, null, itemvalues);
+	}
+
 	/**
 	 * Call this for simple list and fisheye list to get all headlines
 	 * for the specified category.
