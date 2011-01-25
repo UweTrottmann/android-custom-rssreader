@@ -10,6 +10,7 @@ import android.util.Log;
 public class DatabaseHelper {
 	private static final String DATABASE_NAME = "rssdb";
 	private static final int DATABASE_VERSION = 1;
+	
 	public static final String ITEM_TABLE = "items";
 	public static final String ITEM_ID = "_id";
 	public static final String TITLE = "title";
@@ -20,6 +21,7 @@ public class DatabaseHelper {
 	public static final String ITEM_CATEGORY = "itemcategory";
 	public static final String CATEGORY_ID = "_id";
 	public static final String CATEGORY_NAME = "name";
+	
 	public static final String TAG = "RSSNewsReader.DatabaseHelper";
 
 	private static DatabaseHelper _instance;

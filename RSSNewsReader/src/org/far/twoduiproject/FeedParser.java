@@ -21,23 +21,24 @@ import android.util.Xml;
 public class FeedParser {
 
 	private DatabaseHelper mDbHelper;
-	
-	static SimpleDateFormat FORMATTER = 
-        new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-	
-	public FeedParser(Context context){
+
+	static SimpleDateFormat FORMATTER = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+
+	public FeedParser(Context context) {
 		mDbHelper = mDbHelper.getInstance(context);
 	}
-	
+
 	/**
-	 * Preliminary method to parse data from an Atom 2.0 RSS formated XML file input stream.
+	 * Preliminary method to parse data from an RSS 2.0 formatted input stream.
 	 * @param atomstream
+	 * @param categoryid
 	 * @throws IOException
 	 * @throws SAXException
 	 */
-	public void parseAtomStream(InputStream atomstream, final int categoryid) throws IOException, SAXException {
+	public void parseAtomStream(InputStream atomstream, final int categoryid) throws IOException,
+			SAXException {
 		final ContentValues itemvalues = new ContentValues();
-		
+
 		RootElement root = new RootElement("rss");
 		Element item = root.getChild("channel").getChild("item");
 
@@ -65,16 +66,15 @@ public class FeedParser {
 		});
 		item.getChild("pubDate").setEndTextElementListener(new EndTextElementListener() {
 			public void end(String body) {
-				// TODO: transform into time in milliseconds for easier sorting
 				Date date;
-		        try {
-		            date = FORMATTER.parse(body.trim());
-		            Calendar cal = new GregorianCalendar();
-		            cal.setTime(date);
-		            itemvalues.put(DatabaseHelper.PUBDATE, cal.getTimeInMillis());
-		        } catch (ParseException e) {
-		            throw new RuntimeException(e);
-		        }
+				try {
+					date = FORMATTER.parse(body.trim());
+					Calendar cal = new GregorianCalendar();
+					cal.setTime(date);
+					itemvalues.put(DatabaseHelper.PUBDATE, cal.getTimeInMillis());
+				} catch (ParseException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		});
 
