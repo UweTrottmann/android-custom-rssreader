@@ -44,9 +44,15 @@ public class DatabaseHelper {
 		return _instance;
 	}
 	
+	/**
+	 * Call this for simple list and fisheye list to get all headlines
+	 * for the specified category.
+	 * @param category_id
+	 * @return
+	 */
 	public Cursor getItemsForCategory(int category_id){
-		// TODO: Implement fetching of items within category
-		return null;
+		// TODO: Sort by publish date
+		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, null);
 	}
 
 	private class OpenHelper extends SQLiteOpenHelper {
@@ -71,6 +77,7 @@ public class DatabaseHelper {
 					+ PUBDATE + " text default '',"
 					+ ITEM_CATEGORY + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + ")"
 					+ ");");
+			// TODO: store category-id-mapping in a SharedPreferences file?
 			db.execSQL("create table " + CATEGORY_TABLE + " ("
 					+ CATEGORY_ID + " int primary key,"
 					+ CATEGORY_NAME + " text default '',"
