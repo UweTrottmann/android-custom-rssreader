@@ -20,7 +20,7 @@ public class DatabaseHelper {
 	public static final String ITEM_CATEGORY = "itemcategory";
 	public static final String CATEGORY_ID = "_id";
 	public static final String CATEGORY_NAME = "name";
-	public static final String TAG = "SeriesGuide.DatabaseHelper";
+	public static final String TAG = "RSSNewsReader.DatabaseHelper";
 
 	private static DatabaseHelper _instance;
 	private Context context;
@@ -51,10 +51,9 @@ public class DatabaseHelper {
 	}
 
 	/**
-	 * Call this for simple list and fisheye list to get all headlines
-	 * for the specified category.
+	 * Call this to get all news items for a specified category.
 	 * @param category_id
-	 * @return
+	 * @return Cursor containing the news items
 	 */
 	public Cursor getItemsForCategory(int category_id){
 		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, PUBDATE +" desc");
