@@ -2,6 +2,11 @@ package org.far.twoduiproject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.xml.sax.SAXException;
 
@@ -16,6 +21,9 @@ import android.util.Xml;
 public class FeedParser {
 
 	private DatabaseHelper mDbHelper;
+	
+	static SimpleDateFormat FORMATTER = 
+        new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
 	
 	public FeedParser(Context context){
 		mDbHelper = mDbHelper.getInstance(context);
@@ -58,7 +66,15 @@ public class FeedParser {
 		item.getChild("pubDate").setEndTextElementListener(new EndTextElementListener() {
 			public void end(String body) {
 				// TODO: transform into time in milliseconds for easier sorting
-				itemvalues.put(DatabaseHelper.PUBDATE, body);
+				Date date;
+		        try {
+		            date = FORMATTER.parse(body.trim());
+		            Calendar cal = new GregorianCalendar();
+		            cal.setTime(date);
+		            itemvalues.put(DatabaseHelper.PUBDATE, cal.getTimeInMillis());
+		        } catch (ParseException e) {
+		            throw new RuntimeException(e);
+		        }
 			}
 		});
 

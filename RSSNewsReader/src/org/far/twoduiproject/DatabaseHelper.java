@@ -57,8 +57,7 @@ public class DatabaseHelper {
 	 * @return
 	 */
 	public Cursor getItemsForCategory(int category_id){
-		// TODO: Sort by publish date
-		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, null);
+		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, PUBDATE +" desc");
 	}
 
 	private class OpenHelper extends SQLiteOpenHelper {
