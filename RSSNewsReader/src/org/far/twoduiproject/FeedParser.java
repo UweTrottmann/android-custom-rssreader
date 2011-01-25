@@ -36,7 +36,6 @@ public class FeedParser {
 		// set handlers for elements we want to react to
 		item.setEndElementListener(new EndElementListener() {
 			public void end() {
-				// TODO: add item to list and return it or add it to db right away.
 				mDbHelper.addItem(itemvalues, categoryid);
 				itemvalues.clear();
 			}
@@ -58,6 +57,7 @@ public class FeedParser {
 		});
 		item.getChild("pubDate").setEndTextElementListener(new EndTextElementListener() {
 			public void end(String body) {
+				// TODO: transform into time in milliseconds for easier sorting
 				itemvalues.put(DatabaseHelper.PUBDATE, body);
 			}
 		});
