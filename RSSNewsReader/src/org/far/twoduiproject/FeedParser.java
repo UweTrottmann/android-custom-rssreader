@@ -25,7 +25,7 @@ public class FeedParser {
 	static SimpleDateFormat FORMATTER = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
 
 	public FeedParser(Context context) {
-		mDbHelper = mDbHelper.getInstance(context);
+		mDbHelper = DatabaseHelper.getInstance(context);
 	}
 
 	/**

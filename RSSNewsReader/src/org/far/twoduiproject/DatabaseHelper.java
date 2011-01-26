@@ -25,12 +25,12 @@ public class DatabaseHelper {
 	public static final String TAG = "RSSNewsReader.DatabaseHelper";
 
 	private static DatabaseHelper _instance;
-	private Context context;
 	private SQLiteDatabase db;
+	private OpenHelper mOpenHelper;
 
 	private DatabaseHelper(Context context) {
-		this.context = context;
-		this.db = new OpenHelper(context).getWritableDatabase();
+		this.mOpenHelper = new OpenHelper(context);
+		this.db = mOpenHelper.getWritableDatabase();
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class DatabaseHelper {
 	 * @param context
 	 * @return the global instance of DatabaseHelper
 	 */
-	public DatabaseHelper getInstance(Context context) {
+	public static DatabaseHelper getInstance(Context context) {
 		if (_instance == null) {
 			_instance = new DatabaseHelper(context);
 		}
@@ -48,8 +48,21 @@ public class DatabaseHelper {
 	}
 	
 	public void addItem(ContentValues itemvalues, int categoryid) {
-		itemvalues.put(CATEGORY_ID, categoryid);
+		itemvalues.put(ITEM_CATEGORY, categoryid);
 		db.insert(ITEM_TABLE, null, itemvalues);
+	}
+
+	/**
+	 * Preliminary, may not be used in the end as id-category map
+	 * could get stored in SharedPrefernces.
+	 * @param name
+	 * @param id
+	 */
+	public void addCategory(String name, int id) {
+		ContentValues values = new ContentValues();
+		values.put(CATEGORY_ID, id);
+		values.put(CATEGORY_NAME, name);
+		db.insert(CATEGORY_TABLE, null, values);
 	}
 
 	/**
@@ -61,20 +74,38 @@ public class DatabaseHelper {
 		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, PUBDATE +" desc");
 	}
 
+	public void beginTransaction() {
+		db.beginTransaction();
+	}
+
+	public void setTransactionSuccessful(){
+		db.setTransactionSuccessful();
+	}
+
+	public void endTransaction(){
+		db.endTransaction();
+	}
+	
+	public void clear(){
+		mOpenHelper.clear();
+	}
+
 	private class OpenHelper extends SQLiteOpenHelper {
 
 		private OpenHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
 
+		public void clear() {
+			Log.w(TAG, "Clearing of Database was requested, dropping all tables, starting from scratch");
+			db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
+			db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
+			db.setVersion(DATABASE_VERSION);
+			onCreate(db);
+		}
+
 		@Override
-		public void onCreate(SQLiteDatabase arg0) {
-			/*
-			 * Be aware that the current version of sqlite on Android does NOT
-			 * support foreign keys or constraints. It is not that big of a
-			 * downside, as it is more a convenience to have those (e.g. cascade
-			 * on delete).
-			 */
+		public void onCreate(SQLiteDatabase db) {
 			db.execSQL("create table " + ITEM_TABLE + " ("
 					+ ITEM_ID + " int primary key,"
 					+ TITLE + " text,"
@@ -86,7 +117,7 @@ public class DatabaseHelper {
 			// TODO: store category-id-mapping in a SharedPreferences file?
 			db.execSQL("create table " + CATEGORY_TABLE + " ("
 					+ CATEGORY_ID + " int primary key,"
-					+ CATEGORY_NAME + " text default '',"
+					+ CATEGORY_NAME + " text default ''"
 					+ ");");
 		}
 
@@ -114,17 +145,5 @@ public class DatabaseHelper {
 //			db.setVersion(newVersion);
 		}
 
-	}
-
-	public void beginTransaction() {
-		db.beginTransaction();
-	}
-	
-	public void setTransactionSuccessful(){
-		db.setTransactionSuccessful();
-	}
-	
-	public void endTransaction(){
-		db.endTransaction();
 	}
 }
