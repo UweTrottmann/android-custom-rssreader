@@ -30,6 +30,7 @@ public class FeedParser {
 
 	/**
 	 * Preliminary method to parse data from an RSS 2.0 formatted input stream.
+	 * 
 	 * @param atomstream
 	 * @param categoryid
 	 * @throws IOException
@@ -78,6 +79,12 @@ public class FeedParser {
 			}
 		});
 
-		Xml.parse(atomstream, Xml.Encoding.UTF_8, root.getContentHandler());
+		mDbHelper.beginTransaction();
+		try {
+			Xml.parse(atomstream, Xml.Encoding.UTF_8, root.getContentHandler());
+			mDbHelper.setTransactionSuccessful();
+		} finally {
+			mDbHelper.endTransaction();
+		}
 	}
 }

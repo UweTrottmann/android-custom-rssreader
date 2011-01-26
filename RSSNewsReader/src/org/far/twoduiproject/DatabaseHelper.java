@@ -115,4 +115,16 @@ public class DatabaseHelper {
 		}
 
 	}
+
+	public void beginTransaction() {
+		db.beginTransaction();
+	}
+	
+	public void setTransactionSuccessful(){
+		db.setTransactionSuccessful();
+	}
+	
+	public void endTransaction(){
+		db.endTransaction();
+	}
 }
