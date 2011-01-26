@@ -64,6 +64,14 @@ public class DatabaseHelper {
 		values.put(CATEGORY_NAME, name);
 		db.insert(CATEGORY_TABLE, null, values);
 	}
+	
+	/**
+	 * Returns all categories and their ids currently in the database.
+	 * @return
+	 */
+	public Cursor getCategories(){
+		return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
+	}
 
 	/**
 	 * Call this to get all news items for a specified category.
