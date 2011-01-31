@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://rss.cnn.com/~d/styles/itemcontent.css"?><rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0"><channel>
+<title>CNN.com - Technology</title>
+<link>http://edition.cnn.com/TECH/?eref=edition_technology</link>
+<description>CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more.</description>
+<language>en-us</language>
+<copyright>© 2011 Cable News Network LP, LLLP.</copyright>
+<pubDate>Mon, 31 Jan 2011 08:17:30 EST</pubDate>
+<ttl>10</ttl>
+<image>
+<title>CNN.com - Technology</title>
+<link>http://edition.cnn.com/TECH/?eref=edition_technology</link>
+<url>http://i2.cdn.turner.com/cnn/.element/img/1.0/logo/cnn.logo.rss.gif</url>
+<width>144</width>
+<height>33</height>
+<description>CNN.com delivers up-to-the-minute news and information on the latest top stories, weather, entertainment, politics and more.</description>
+</image>
+<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://rss.cnn.com/rss/edition_technology" /><feedburner:info uri="rss/edition_technology" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><item>
+<title>Live! From New York! It's Mark Zuckerberg!</title>
+<guid isPermaLink="false">http://edition.cnn.com/2011/TECH/social.media/01/31/zuckerberg.snl.wired/index.html?eref=edition_technology</guid>
+<link>http://rss.cnn.com/~r/rss/edition_technology/~3/OHVVB60OLsU/index.html</link>
+<description>Who says Facebook founder Mark Zuckerberg has no sense of humor when it comes to "The Social Network," the Oscar-nominated film which he has said got nothing right except his T-shirt collection?&lt;img src="http://feeds.feedburner.com/~r/rss/edition_technology/~4/OHVVB60OLsU" height="1" width="1"/&gt;</description>
+<pubDate>Mon, 31 Jan 2011 07:31:17 EST</pubDate>
+<feedburner:origLink>http://edition.cnn.com/2011/TECH/social.media/01/31/zuckerberg.snl.wired/index.html?eref=edition_technology</feedburner:origLink></item>
+<item>
+<title>How video games can make you smarter</title>
+<guid isPermaLink="false">http://edition.cnn.com/2011/TECH/gaming.gadgets/01/31/video.games.smarter.steinberg/index.html?eref=edition_technology</guid>
+<link>http://rss.cnn.com/~r/rss/edition_technology/~3/GImTp_nXeyg/index.html</link>
+<description>Critics often accuse video games of making players lazy, inept and socially awkward. Contrary to popular belief, though, many build, not burn brain cells by requiring extensive problem solving, teamwork and dynamic decision-making skills.&lt;img src="http://feeds.feedburner.com/~r/rss/edition_technology/~4/GImTp_nXeyg" height="1" width="1"/&gt;</description>
+<pubDate>Mon, 31 Jan 2011 07:03:30 EST</pubDate>
+<feedburner:origLink>http://edition.cnn.com/2011/TECH/gaming.gadgets/01/31/video.games.smarter.steinberg/index.html?eref=edition_technology</feedburner:origLink></item>
+<item>
+<title>Egypt Web shutdown is coordinated, extensive</title>
+<guid isPermaLink="false">http://edition.cnn.com/2011/TECH/web/01/28/egypt.internet.shutdown/index.html?eref=edition_technology</guid>
+<link>http://rss.cnn.com/~r/rss/edition_technology/~3/9LdD_KtRgcQ/index.html</link>
+<description>For the rocks and other projectiles that protestors are hurling in the streets of Cairo, Egypt's riot police have shields.&lt;img src="http://feeds.feedburner.com/~r/rss/edition_technology/~4/9LdD_KtRgcQ" height="1" width="1"/&gt;</description>
+<pubDate>Fri, 28 Jan 2011 21:16:08 EST</pubDate>
+<feedburner:origLink>http://edition.cnn.com/2011/TECH/web/01/28/egypt.internet.shutdown/index.html?eref=edition_technology</feedburner:origLink></item>
+<item>
+<title>Smartphone apps that tell you what to say</title>
+<guid isPermaLink="false">http://edition.cnn.com/2011/TECH/mobile/01/28/smartphone.apps.whattosay/index.html?eref=edition_technology</guid>
+<link>http://rss.cnn.com/~r/rss/edition_technology/~3/WoUPsPU1LKI/index.html</link>
+<description>Smartphones are perpetually blamed, ironically, for our lack of communication. Incessant text messaging, constant "Words with Friends" games and endless Facebook updates often distract us from face-to-face conversation.&lt;img src="http://feeds.feedburner.com/~r/rss/edition_technology/~4/WoUPsPU1LKI" height="1" width="1"/&gt;</description>
+<pubDate>Fri, 28 Jan 2011 07:38:13 EST</pubDate>
+<feedburner:origLink>http://edition.cnn.com/2011/TECH/mobile/01/28/smartphone.apps.whattosay/index.html?eref=edition_technology</feedburner:origLink></item>
+</channel></rss>
