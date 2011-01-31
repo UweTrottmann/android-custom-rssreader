@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="logo_size">24pt</dimen> 
+  <dimen name="screen_title_size">16pt</dimen> 
+  <dimen name="title_bottom_margin">5pt</dimen>
+  <dimen name="title_left_margin">2pt</dimen>
+  <dimen name="tile_right_margin">2pt</dimen>
+  <dimen name="menu_item_size">16pt</dimen> 
+
+
+</resources>
+

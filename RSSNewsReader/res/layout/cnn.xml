@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<RelativeLayout android:layout_marginBottom="@dimen/title_bottom_margin" android:id="@+id/RelativeLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content">
+<ImageView android:id="@+id/ImageView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
+<ImageView android:id="@+id/ImageView03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:layout_alignParentTop="true" android:src="@drawable/cnn_logo"></ImageView>
+<ImageView android:id="@+id/ImageView02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
+</RelativeLayout>    
+
+
+
+
+</LinearLayout>

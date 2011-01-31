@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, RSSNewsReader!</string>
+    <string name="hello">Click the menu button to go into Settings and setup your prefered categories.</string>
     <string name="app_name">RSSNewsReader</string>
+    <string name="preferences">Preferences</string>
+    <string name="update">Update</string>
+    
+    <string name="title">My News Reader</string>
+    <string name="preference">Preferences</string>
+    <string name="android_sax">Android SAX</string>
+    <string name="cnn_TopStories">Top Stories</string>
+    <string name="cnn_TopStories_Link">http://rss.cnn.com/rss/edition.rss</string>
+    <string name="cnn_World">World</string>
+    <string name="cnn_World_Link">http://rss.cnn.com/rss/edition_world.rss</string>
+    <string name="cnn_Africa">Africa</string>
+    <string name="cnn_Africa_Link">http://rss.cnn.com/rss/edition_africa.rss</string>
+    <string name="cnn_Americas_Link">http://rss.cnn.com/rss/edition_americas.rss</string>
+    <string name="cnn_Asia">Asia</string>
+    <string name="cnn_Asia_Link">http://rss.cnn.com/rss/edition_asia.rss</string>
+    <string name="cnn_Europe">Europe</string>
+    <string name="cnn_Europe_Link">http://rss.cnn.com/rss/edition_europe.rss</string>
+    <string name="cnn_MiddleEast">Middle East</string>
+    <string name="cnn_MiddleEast_Link">http://rss.cnn.com/rss/edition_meast.rss</string>
+    <string name="cnn_Us">USA</string>
+    <string name="cnn_Us_Link">http://rss.cnn.com/rss/edition_us.rss</string>
+    <string name="cnn_WorldBusiness">World Business</string>
+    <string name="cnn_WorldBusiness_Link">http://rss.cnn.com/rss/edition_business.rss</string>
+    <string name="cnn_Technology">Technology</string>
+    <string name="cnn_Technology_Link">http://rss.cnn.com/rss/edition_technology.rss</string>
 </resources>

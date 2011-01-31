@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<RelativeLayout android:layout_marginBottom="@dimen/title_bottom_margin" android:id="@+id/RelativeLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content">
+<ImageView android:id="@+id/ImageView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
+<TextView android:id="@+id/TextView01" android:text="@string/title"  android:textSize="@dimen/screen_title_size" android:shadowDx="0" android:shadowDy="0" android:shadowRadius="10"  android:layout_centerHorizontal="true" android:layout_alignParentTop="true" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<ImageView android:id="@+id/ImageView02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
+</RelativeLayout>    
+
+
+<ImageView android:id="@+id/cnn" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/cnn_logo"></ImageView>
+
+<ImageView android:id="@+id/bbc" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/bbc_logo"></ImageView>
+
+
+
+</LinearLayout>
