@@ -1,3 +1,4 @@
+
 package org.far.twoduiproject;
 
 import android.content.ContentValues;
@@ -8,150 +9,190 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper {
-	private static final String DATABASE_NAME = "rssdb";
-	private static final int DATABASE_VERSION = 1;
-	
-	public static final String ITEM_TABLE = "items";
-	public static final String ITEM_ID = "_id";
-	public static final String TITLE = "title";
-	public static final String LINK = "link";
-	public static final String DESCRIPTION = "description";
-	public static final String PUBDATE = "pubdate";
-	public static final String CATEGORY_TABLE = "categories";
-	public static final String ITEM_CATEGORY = "itemcategory";
-	public static final String CATEGORY_ID = "_id";
-	public static final String CATEGORY_NAME = "name";
-	
-	public static final String TAG = "RSSNewsReader.DatabaseHelper";
+    private static final String DATABASE_NAME = "rssdb";
 
-	private static DatabaseHelper _instance;
-	private SQLiteDatabase db;
-	private OpenHelper mOpenHelper;
+    private static final int DATABASE_VERSION = 1;
 
-	private DatabaseHelper(Context context) {
-		this.mOpenHelper = new OpenHelper(context);
-		this.db = mOpenHelper.getWritableDatabase();
-	}
+    public static final String ITEM_TABLE = "items";
 
-	/**
-	 * Activities should call this to get a reference to the database helper.
-	 * This class is a singleton to avoid opening of the database multiple
-	 * times.
-	 * @param context
-	 * @return the global instance of DatabaseHelper
-	 */
-	public static DatabaseHelper getInstance(Context context) {
-		if (_instance == null) {
-			_instance = new DatabaseHelper(context);
-		}
-		return _instance;
-	}
-	
-	public void addItem(ContentValues itemvalues, int categoryid) {
-		itemvalues.put(ITEM_CATEGORY, categoryid);
-		db.insert(ITEM_TABLE, null, itemvalues);
-	}
+    public static final String CATEGORY_TABLE = "categories";
 
-	/**
-	 * Preliminary, may not be used in the end as id-category map
-	 * could get stored in SharedPrefernces.
-	 * @param name
-	 * @param id
-	 */
-	public void addCategory(String name, int id) {
-		ContentValues values = new ContentValues();
-		values.put(CATEGORY_ID, id);
-		values.put(CATEGORY_NAME, name);
-		db.insert(CATEGORY_TABLE, null, values);
-	}
-	
-	/**
-	 * Returns all categories and their ids currently in the database.
-	 * @return
-	 */
-	public Cursor getCategories(){
-		return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
-	}
+    public static final String PREFERENCE_TABLE = "preferences";
 
-	/**
-	 * Call this to get all news items for a specified category.
-	 * @param category_id
-	 * @return Cursor containing the news items
-	 */
-	public Cursor getItemsForCategory(int category_id){
-		return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null, PUBDATE +" desc");
-	}
+    public static final String PROVIDER_TABLE = "providers";
 
-	public void beginTransaction() {
-		db.beginTransaction();
-	}
+    public static final String ITEM_ID = "_id";
 
-	public void setTransactionSuccessful(){
-		db.setTransactionSuccessful();
-	}
+    public static final String TITLE = "title";
 
-	public void endTransaction(){
-		db.endTransaction();
-	}
-	
-	public void clear(){
-		mOpenHelper.clear();
-	}
+    public static final String LINK = "link";
 
-	private class OpenHelper extends SQLiteOpenHelper {
+    public static final String DESCRIPTION = "description";
 
-		private OpenHelper(Context context) {
-			super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		}
+    public static final String PUBDATE = "pubdate";
 
-		public void clear() {
-			Log.w(TAG, "Clearing of Database was requested, dropping all tables, starting from scratch");
-			db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
-			db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
-			db.setVersion(DATABASE_VERSION);
-			onCreate(db);
-		}
+    public static final String ITEM_CATEGORY = "itemcategory";
 
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			db.execSQL("create table " + ITEM_TABLE + " ("
-					+ ITEM_ID + " int primary key,"
-					+ TITLE + " text,"
-					+ LINK + " text default '',"
-					+ DESCRIPTION + " text default '',"
-					+ PUBDATE + " text default '',"
-					+ ITEM_CATEGORY + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + ")"
-					+ ");");
-			// TODO: store category-id-mapping in a SharedPreferences file?
-			db.execSQL("create table " + CATEGORY_TABLE + " ("
-					+ CATEGORY_ID + " int primary key,"
-					+ CATEGORY_NAME + " text default ''"
-					+ ");");
-		}
+    public static final String CATEGORY_ID = "_id";
 
-		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
-			if (oldVersion > DATABASE_VERSION) {
-				Log.w(TAG, "Database is newer version (" + oldVersion + ") than this app can use (" + newVersion + "), starting from scratch");
-				db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
-				db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
-				db.setVersion(DATABASE_VERSION);
-				onCreate(db);
-				return;
-			}
-			
-			/*
-			 * Upgrade-Code if the need arises to change the db schema between versions
-			 */
-//			int currentVersion = oldVersion;
-//			while (currentVersion < newVersion) {
-//				switch (currentVersion) {
-//				}
-//				currentVersion++;
-//			}
-//			db.setVersion(newVersion);
-		}
+    public static final String CATEGORY_NAME = "name";
 
-	}
+    public static final String PREF_PROVIDERID = "providerid";
+
+    public static final String PROVIDER_ID = "_id";
+
+    public static final String FEEDPATH = "feedpath";
+
+    public static final String ENABLED = "enabled";
+
+    public static final String PROVIDER_NAME = "providername";
+
+    public static final String TAG = "RSSNewsReader.DatabaseHelper";
+
+    public static final String PREF_CATEGORY_ID = "pref_categoryid";
+
+    private static DatabaseHelper _instance;
+
+    private SQLiteDatabase db;
+
+    private OpenHelper mOpenHelper;
+
+    private DatabaseHelper(Context context) {
+        this.mOpenHelper = new OpenHelper(context);
+        this.db = mOpenHelper.getWritableDatabase();
+    }
+
+    /**
+     * Activities should call this to get a reference to the database helper.
+     * This class is a singleton to avoid opening of the database multiple
+     * times.
+     * 
+     * @param context
+     * @return the global instance of DatabaseHelper
+     */
+    public static DatabaseHelper getInstance(Context context) {
+        if (_instance == null) {
+            _instance = new DatabaseHelper(context);
+        }
+        return _instance;
+    }
+
+    public void addItem(ContentValues itemvalues, int categoryid) {
+        itemvalues.put(ITEM_CATEGORY, categoryid);
+        db.insert(ITEM_TABLE, null, itemvalues);
+    }
+
+    /**
+     * Preliminary, may not be used in the end as id-category map could get
+     * stored in SharedPrefernces.
+     * 
+     * @param name
+     * @param id
+     */
+    public void addCategory(String name, int id) {
+        ContentValues values = new ContentValues();
+        values.put(CATEGORY_ID, id);
+        values.put(CATEGORY_NAME, name);
+        db.insert(CATEGORY_TABLE, null, values);
+    }
+
+    /**
+     * Returns all categories and their ids currently in the database.
+     * 
+     * @return
+     */
+    public Cursor getCategories() {
+        return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
+    }
+
+    /**
+     * Call this to get all news items for a specified category.
+     * 
+     * @param category_id
+     * @return Cursor containing the news items
+     */
+    public Cursor getItemsForCategory(int category_id) {
+        return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null,
+                PUBDATE + " desc");
+    }
+
+    public void beginTransaction() {
+        db.beginTransaction();
+    }
+
+    public void setTransactionSuccessful() {
+        db.setTransactionSuccessful();
+    }
+
+    public void endTransaction() {
+        db.endTransaction();
+    }
+
+    public void clear() {
+        mOpenHelper.clear();
+    }
+
+    private class OpenHelper extends SQLiteOpenHelper {
+
+        private Context mContext;
+        
+        private OpenHelper(Context context) {
+            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.mContext = context;
+        }
+
+        public void clear() {
+            Log
+                    .w(TAG,
+                            "Clearing of Database was requested, dropping all tables, starting from scratch");
+            db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
+            db.setVersion(DATABASE_VERSION);
+            onCreate(db);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("create table " + ITEM_TABLE + " ("
+                    + ITEM_ID + " int primary key,"
+                    + TITLE + " text,"
+                    + LINK + " text default '',"
+                    + DESCRIPTION + " text default '',"
+                    + PUBDATE + " text default '',"
+                    + ITEM_CATEGORY + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + ")" + ");");
+            db.execSQL("create table " + CATEGORY_TABLE + " (" + CATEGORY_ID + " int primary key,"
+                    + CATEGORY_NAME + " text default ''" + ");");
+            db.execSQL("create table " + PREFERENCE_TABLE + " ("
+                    + PREF_PROVIDERID + " int references " + PROVIDER_TABLE + "(" + PROVIDER_ID + "),"
+                    + PREF_CATEGORY_ID + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + "),"
+                    + FEEDPATH + " text default '',"
+                    + ENABLED + " int default 1"
+                    + ");");
+            db.execSQL("create table " + PROVIDER_TABLE + " ("
+                    + PROVIDER_ID + " int primary key,"
+                    + PROVIDER_NAME + " text default ''"
+                    + ");");
+            
+            FeedParser.parseInitialSetup(db, mContext);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion);
+            if (oldVersion < DATABASE_VERSION) {
+                Log.w(TAG, "Database is older version (" + oldVersion + ") than this app can use ("
+                        + newVersion + "), starting from scratch");
+                db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
+                db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
+                db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
+                db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
+                db.setVersion(DATABASE_VERSION);
+                onCreate(db);
+                return;
+            }
+        }
+
+    }
 }

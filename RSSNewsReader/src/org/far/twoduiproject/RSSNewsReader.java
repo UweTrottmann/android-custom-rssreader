@@ -1,10 +1,6 @@
 
 package org.far.twoduiproject;
 
-import java.io.IOException;
-
-import org.xml.sax.SAXException;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,25 +29,7 @@ public class RSSNewsReader extends ListActivity {
          * All of the following is for testing purposes only, will be replaced
          * with actual frontend (listviews, etc.)
          */
-        FeedParser parser = new FeedParser(getApplicationContext());
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
-        mDbHelper.clear();
-        mDbHelper.addCategory("Technology", 1);
-        mDbHelper.addCategory("Politics", 2);
-
-        try {
-            parser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 1);
-        } catch (IOException e) {
-
-            // TODO Auto-generated catch block
-
-            e.printStackTrace();
-        } catch (SAXException e) {
-
-            // TODO Auto-generated catch block
-
-            e.printStackTrace();
-        }
         
         fillData();
     }
