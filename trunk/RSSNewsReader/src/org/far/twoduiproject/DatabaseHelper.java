@@ -88,7 +88,7 @@ public class DatabaseHelper {
      * @param categoryid
      * @param isEnabled
      */
-    public void changeCategoryForProvider(int providerid, int categoryid, boolean isEnabled){
+    public void changeCategoryState(int providerid, int categoryid, boolean isEnabled){
         ContentValues values = new ContentValues();
         values.put(ENABLED, isEnabled);
         db.update(PREFERENCE_TABLE, values, PREF_PROVIDERID + "=" + providerid + " AND "
