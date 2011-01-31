@@ -5,18 +5,21 @@ import java.io.IOException;
 
 import org.xml.sax.SAXException;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-public class RSSNewsReader extends Activity {
+public class RSSNewsReader extends ListActivity {
     private static final String KEY_FIRSTRUN = "firstrun";
+    private DatabaseHelper mDbHelper;
 
     /** Called when the activity is first created. */
     @Override
@@ -31,12 +34,13 @@ public class RSSNewsReader extends Activity {
          * with actual frontend (listviews, etc.)
          */
         FeedParser parser = new FeedParser(getApplicationContext());
-        DatabaseHelper dbHelper = DatabaseHelper.getInstance(getApplicationContext());
-        dbHelper.clear();
-        dbHelper.addCategory("Technology", 123);
+        mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
+        mDbHelper.clear();
+        mDbHelper.addCategory("Technology", 1);
+        mDbHelper.addCategory("Politics", 2);
 
         try {
-            parser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 123);
+            parser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 1);
         } catch (IOException e) {
 
             // TODO Auto-generated catch block
@@ -48,6 +52,33 @@ public class RSSNewsReader extends Activity {
 
             e.printStackTrace();
         }
+        
+        fillData();
+    }
+
+    private void fillData() {
+        Cursor categories = mDbHelper.getCategories();
+        startManagingCursor(categories);
+        
+        String[] from;
+        int[] to;
+        int layout;
+        
+        // Create an array to specify the fields we want to display in the
+        // list
+        from = new String[] { DatabaseHelper.CATEGORY_NAME };
+
+        // and an array of the fields we want to bind those fields to
+        to = new int[] { R.id.categoryname };
+
+        layout = R.layout.categories_simple;
+        
+     // Now create a simple cursor adapter and set it to display
+        SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(), layout,
+                categories, from, to);
+        
+        setListAdapter(categoriesAdapter);
+        
     }
 
     @Override

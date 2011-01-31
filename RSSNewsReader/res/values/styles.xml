@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Headers in the list views -->
+	<style name="Title">
+		<item name="android:textSize">30sp</item>
+		<item name="android:layout_margin">5dp</item>
+    	<item name="android:layout_marginBottom">10dp</item>
+    	<item name="android:textColor">#bebebe</item>
+	</style>
+	<style name="ListTitle">
+		<item name="android:textSize">22sp</item>
+		<item name="android:textColor">#fff</item>
+	</style>
+</resources>
