@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="/shared/bsp/xsl/rss/nolsol.xsl"?>
+
+<rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">  
+  <channel> 
+    <title>BBC News - Politics</title>  
+    <link>http://www.bbc.co.uk/go/rss/int/news/-/news/politics/</link>  
+    <description>The latest stories from the Politics section of the BBC News web site.</description>  
+    <language>en-gb</language>  
+    <lastBuildDate>Mon, 31 Jan 2011 12:57:45 GMT</lastBuildDate>  
+    <copyright>Copyright: (C) British Broadcasting Corporation, see http://news.bbc.co.uk/2/hi/help/rss/4498287.stm for terms and conditions of reuse.</copyright>  
+    <ttl>15</ttl>  
+    <atom:link href="http://feeds.bbci.co.uk/news/politics/rss.xml" rel="self" type="application/rss+xml"/>  
+    <item> 
+      <title>Cameron defends NHS overhaul plan</title>  
+      <description>David Cameron defends the coalition's plans to overhaul the NHS in England, as MPs prepare to vote on the bill.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-12321166</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-12321166</guid>  
+      <pubDate>Mon, 31 Jan 2011 12:46:12 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50857000/jpg/_50857325_003047409-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50857000/jpg/_50857327_003047409-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>750,000 'to pay higher tax rate'</title>  
+      <description>Three-quarters of a million more people are set to become higher rate taxpayers in April, says the Institute for Fiscal Studies.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/business-12321524</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/business-12321524</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:02:57 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51027000/jpg/_51027214_pounds_afp226.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51027000/jpg/_51027215_pounds_afp226.jpg"/> 
+    </item>  
+    <item> 
+      <title>UK won't tear up cuts plans - PM</title>  
+      <description>The government will not abandon its spending plans and take up Labour's alternative plan, Prime Minister David Cameron insists.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12322316</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12322316</guid>  
+      <pubDate>Mon, 31 Jan 2011 10:52:02 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028043_011134078-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028041_011134078-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>UK calls for Egypt 'transition'</title>  
+      <description>David Cameron and US President Barack Obama call for an "orderly transition" to a democratic government in Egypt.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12320891</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12320891</guid>  
+      <pubDate>Mon, 31 Jan 2011 12:02:09 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51007000/jpg/_51007109_011137568-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51007000/jpg/_51007104_011137568-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Gang injunctions come into force</title>  
+      <description>Powers to restrict the movements of people accused of gang membership are introduced in England and Wales.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-12311184</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-12311184</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:31:43 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/45284000/jpg/_45284413_50fa09f1-294a-40a9-b25f-0adea5143d18.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51026000/jpg/_51026495_-19.jpg"/> 
+    </item>  
+    <item> 
+      <title>Turmoil if cuts scrapped: Osborne</title>  
+      <description>Chancellor George Osborne warns "financial turmoil" would result if he were to abandon his deficit reduction plans, but his Labour shadow says he is "in denial".</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12316581</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12316581</guid>  
+      <pubDate>Sun, 30 Jan 2011 12:41:29 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016095_008870455-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016317_008870455-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Balls questions King's cuts view</title>  
+      <description>Shadow chancellor Ed Balls questions whether Bank of England governor Mervyn King believes "in his heart of hearts" that "crushing spending" is the way to get the UK's economy growing.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12317510</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12317510</guid>  
+      <pubDate>Sun, 30 Jan 2011 13:02:05 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016827_010692650-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016829_010692650-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Lansley plays down NHS 'risks'</title>  
+      <description>Health Secretary Andrew Lansley admits there are "risks" with his planned NHS changes - but says they are part of efforts to save thousands of lives.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12318177</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12318177</guid>  
+      <pubDate>Sun, 30 Jan 2011 12:36:11 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50862000/jpg/_50862274_hospitalspl.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50862000/jpg/_50862276_hospitalspl.jpg"/> 
+    </item>  
+    <item> 
+      <title>UK officials extend Egypt warning</title>  
+      <description>British nationals "without a pressing need" to be in Cairo should leave if it is safe for them to do so, the Foreign Office says.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12318528</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12318528</guid>  
+      <pubDate>Sun, 30 Jan 2011 22:39:23 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51020000/jpg/_51020960_011152428-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51020000/jpg/_51020992_011152428-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Miliband meets UK Helmand troops</title>  
+      <description>Labour leader Ed Miliband makes his first trip to meet UK troops in Afghanistan, telling them their country is behind them.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-12315638</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-12315638</guid>  
+      <pubDate>Sat, 29 Jan 2011 14:34:55 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51011000/jpg/_51011225_011140918-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51011000/jpg/_51011830_011140929-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Blair 'feared Cabinet Iraq leaks'</title>  
+      <description>Tony Blair was "reluctant" to hold Cabinet discussions on Iraq because he feared they would be leaked, says the UK's top civil servant Sir Gus O'Donnell.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12306377</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12306377</guid>  
+      <pubDate>Fri, 28 Jan 2011 13:49:42 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50997000/jpg/_50997882_gusgrab_304.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50997000/jpg/_50997884_gusgrab_304.jpg"/> 
+    </item>  
+    <item> 
+      <title>Ed Miliband admits he was 'a bit square'</title>  
+      <description>Labour leader Ed Miliband reveals he was a "bit square" as a youth, eschewing drugs and under-age drinking.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12322365</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12322365</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:29:28 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028945_011065009-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028064_011065009-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>MP on 'superb support' since coming out</title>  
+      <description>Conservative MP Nigel Evans tells the BBC his decision to come out was partly inspired by Wales rugby star, Gareth Thomas.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-england-lancashire-12318668</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-england-lancashire-12318668</guid>  
+      <pubDate>Sun, 30 Jan 2011 13:02:59 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51019000/jpg/_51019331_evans_300111_still.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51019000/jpg/_51019333_evans_300111_still.jpg"/> 
+    </item>  
+    <item> 
+      <title>Cameron accused over economic impact of cuts</title>  
+      <description>Prime Minister David Cameron should "put his arrogance aside" and acknowledge that the government's spending cuts are failing to secure economic growth, Labour leader Ed Miliband has said.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/democracylive/hi/house_of_commons/newsid_9372000/9372238.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/democracylive/hi/house_of_commons/newsid_9372000/9372238.stm</guid>  
+      <pubDate>Wed, 26 Jan 2011 12:35:01 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50962000/jpg/_50962310_-5.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50962000/jpg/_50962311_-5.jpg"/> 
+    </item>  
+    <item> 
+      <title>Challenge to MP resignation rules</title>  
+      <description>The Shadow Leader of the House of Commons calls for a change in the constitution to allow a member of parliament to resign by letter.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-northern-ireland-12298010</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-northern-ireland-12298010</guid>  
+      <pubDate>Thu, 27 Jan 2011 13:26:53 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50942000/jpg/_50942059_003752994-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50942000/jpg/_50942113_003752994-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Guide to N.Ireland Assembly</title>  
+      <description>A tour of the Northern Ireland Assembly at Stormont.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/democracylive/hi/guides/newsid_8107000/8107911.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/democracylive/hi/guides/newsid_8107000/8107911.stm</guid>  
+      <pubDate>Tue, 20 Jul 2010 15:10:40 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/46006000/jpg/_46006061_stormont16649.jpg"/> 
+    </item>  
+    <item> 
+      <title>Prisoner support 'lacks vision'</title>  
+      <description>Justice officials must urgently address a lack of strategy in delivering social work services in Scotland's jails, inspectors warn.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-scotland-12323210</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-scotland-12323210</guid>  
+      <pubDate>Mon, 31 Jan 2011 12:40:45 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50494000/jpg/_50494484_prisonerincell.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50500000/jpg/_50500245_prisonerincell.jpg"/> 
+    </item>  
+    <item> 
+      <title>Guide to the Scottish Parliament</title>  
+      <description>BBC Democracy Live takes you on a tour of the Scottish Parliament.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/democracylive/hi/guides/newsid_8136000/8136663.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/democracylive/hi/guides/newsid_8136000/8136663.stm</guid>  
+      <pubDate>Wed, 28 Oct 2009 17:00:21 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/46018000/jpg/_46018083_-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>S4C funding protest at BBC Wales</title>  
+      <description>Welsh language protesters block the entrance to BBC Wales' Cardiff headquarters in a protest over the future funding of S4C.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-wales-12321913</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-wales-12321913</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:42:48 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028270_sitin171bbc.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51028000/jpg/_51028268_sitin171bbc.jpg"/> 
+    </item>  
+    <item> 
+      <title>Guide to the Welsh Assembly</title>  
+      <description>A guide to the National Assembly for Wales.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/democracylive/hi/guides/newsid_8052000/8052008.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/democracylive/hi/guides/newsid_8052000/8052008.stm</guid>  
+      <pubDate>Sat, 31 Oct 2009 13:03:47 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/46422000/jpg/_46422017_005038219-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Blogs from around the regions</title>  
+      <description>Politics blogs: English regions</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/10605785</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/10605785</guid>  
+      <pubDate>Mon, 12 Jul 2010 16:17:02 GMT</pubDate> 
+    </item>  
+    <item> 
+      <title>UK political websites</title>  
+      <description>UK political websites</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/uk_politics/8044401.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/uk_politics/8044401.stm</guid>  
+      <pubDate>Wed, 13 May 2009 16:40:40 GMT</pubDate> 
+    </item>  
+    <item> 
+      <title>Who's who: The cabinet</title>  
+      <description>A guide to who's doing what in David Cameron's Conservative-Liberal Democrat coalition government.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/1/hi/uk_politics/8675705.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/1/hi/uk_politics/8675705.stm</guid>  
+      <pubDate>Thu, 03 Jun 2010 16:24:11 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/47837000/jpg/_47837150_theresa_may_getty.jpg"/> 
+    </item>  
+    <item> 
+      <title>At a glance: Shadow cabinet</title>  
+      <description>Details of Labour's revised shadow cabinet following Alan Johnson's resignation.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12244589</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12244589</guid>  
+      <pubDate>Thu, 20 Jan 2011 17:41:41 GMT</pubDate> 
+    </item>  
+    <item> 
+      <title>Speaker's enemies in the House?</title>  
+      <description>Speaker John Bercow has been controversial from the start, but could he be making too many enemies for his own good?</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12323269</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12323269</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:40:48 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51029000/jpg/_51029003_jex_941388_de31-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51029000/jpg/_51029001_jex_941388_de31-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Is Nick Clegg working hard enough?</title>  
+      <description>Former Conservative cabinet minister David Mellor and the FT's Sue Cameron debate just how hard we should expect our politicians to work.</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/today/hi/today/newsid_9382000/9382234.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/today/hi/today/newsid_9382000/9382234.stm</guid>  
+      <pubDate>Mon, 31 Jan 2011 11:36:47 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51031000/jpg/_51031627_011066008-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51031000/jpg/_51031628_011066008-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>'Now is moment of change in Egypt'</title>  
+      <description>Tony Blair tells BBC Radio 5 live Breakfast's Nicky Campbell that Egyptians want change but not chaos.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-12323701</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-12323701</guid>  
+      <pubDate>Mon, 31 Jan 2011 12:25:45 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51029000/jpg/_51029717_011074362-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51029000/jpg/_51029718_011074362-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Balls questions King's view on cuts</title>  
+      <description>Shadow chancellor Ed Balls has said he doubts that "in his heart of hearts" the Bank of England governor believes the UK economy is on the right track.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12318600</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12318600</guid>  
+      <pubDate>Sun, 30 Jan 2011 11:43:20 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51018000/jpg/_51018733_balls.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51018000/jpg/_51018731_balls.jpg"/> 
+    </item>  
+    <item> 
+      <title>Osborne on 'turmoil' without cuts</title>  
+      <description>Chancellor George Osborne has warned there would be "financial turmoil" if he abandoned cuts and tax rises.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12317201</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12317201</guid>  
+      <pubDate>Sun, 30 Jan 2011 00:51:36 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016572_jex_940731_de54-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51016000/jpg/_51016570_jex_940731_de54-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>'I thought the PM was married to the Queen'</title>  
+      <description>Channel 4's Jon Snow recalls his first taste of politics when, as a young boy, his father introduced him to a man who went to the same church service: the Prime Minister, Harold Macmillan.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/entertainment-arts-12312532</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/entertainment-arts-12312532</guid>  
+      <pubDate>Sun, 30 Jan 2011 03:09:36 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51006000/jpg/_51006025_jon_snow_6649.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51006000/jpg/_51006027_jon_snow_144.jpg"/> 
+    </item>  
+    <item> 
+      <title>The political week in 60 seconds</title>  
+      <description>A reminder of the political week in 60 seconds as covered on the Daily Politics.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12308928</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12308928</guid>  
+      <pubDate>Fri, 28 Jan 2011 13:07:16 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50064000/jpg/_50064025_jex_873805_de27-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50064000/jpg/_50064023_jex_873805_de27-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Smith: Why I made museums free</title>  
+      <description>The coalition government pledges to keep free museum entry, a policy introduced in 2000 by the then Culture Secretary Chris Smith.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12309160</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12309160</guid>  
+      <pubDate>Fri, 28 Jan 2011 13:14:27 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50998000/jpg/_50998035_jex_939593_de27-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50997000/jpg/_50997084_jex_939593_de27-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Crunch time</title>  
+      <description>James Landale on the impact of AV Bill battle on Lords' future</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12322551</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12322551</guid>  
+      <pubDate>Mon, 31 Jan 2011 10:46:58 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50961000/jpg/_50961339_009748769-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/50966000/jpg/_50966965_009748769-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Back to 'bomb alley'</title>  
+      <description>US marines take on British work in Afghanistan's Sangin district</description>  
+      <link>http://news.bbc.co.uk/go/rss/int/news/-/panorama/hi/front_page/newsid_9378000/9378563.stm</link>  
+      <guid isPermaLink="false">http://news.bbc.co.uk/panorama/hi/front_page/newsid_9378000/9378563.stm</guid>  
+      <pubDate>Mon, 31 Jan 2011 01:40:24 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/50986000/jpg/_50986299_b00yc4ff_640_360-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51025000/jpg/_51025707_004083400-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Lords Debate</title>  
+      <description>Play your part in peers' debate on the issue of good parenting</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-12296859</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-12296859</guid>  
+      <pubDate>Fri, 28 Jan 2011 12:47:46 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/51000000/jpg/_51000131_lords3.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/51000000/jpg/_51000132_lords3.jpg"/> 
+    </item>  
+    <item> 
+      <title>Alternative Vote</title>  
+      <description>A guide to the planned referendum on changing the voting system</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-11243595</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-11243595</guid>  
+      <pubDate>Thu, 13 Jan 2011 11:31:38 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49046000/jpg/_49046360_000733038-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49040000/jpg/_49040505_000733038-1.jpg"/> 
+    </item>  
+    <item> 
+      <title>Polltracker</title>  
+      <description>Follow the main parties' opinion poll fortunes.</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-10963393</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-10963393</guid>  
+      <pubDate>Thu, 27 Jan 2011 15:48:13 GMT</pubDate>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/48727000/gif/_48727105_promo_144.gif"/> 
+    </item>  
+    <item> 
+      <title>Yes or No</title>  
+      <description>Where do political parties stand on the AV referendum?</description>  
+      <link>http://www.bbc.co.uk/go/rss/int/news/-/news/uk-politics-11609887</link>  
+      <guid isPermaLink="false">http://www.bbc.co.uk/news/uk-politics-11609887</guid>  
+      <pubDate>Thu, 13 Jan 2011 12:12:22 GMT</pubDate>  
+      <media:thumbnail width="66" height="49" url="http://news.bbcimg.co.uk/media/images/49652000/jpg/_49652055_000733052-1.jpg"/>  
+      <media:thumbnail width="144" height="81" url="http://news.bbcimg.co.uk/media/images/49651000/jpg/_49651752_000733052-1.jpg"/> 
+    </item> 
+  </channel> 
+</rss>
