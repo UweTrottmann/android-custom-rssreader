@@ -81,19 +81,26 @@ public class DatabaseHelper {
         itemvalues.put(ITEM_CATEGORY, categoryid);
         db.insert(ITEM_TABLE, null, itemvalues);
     }
-
+    
     /**
-     * Preliminary, may not be used in the end as id-category map could get
-     * stored in SharedPrefernces.
-     * 
-     * @param name
-     * @param id
+     * Changes the enabled state of the given category for the given provider.
+     * @param providerid
+     * @param categoryid
+     * @param isEnabled
      */
-    public void addCategory(String name, int id) {
+    public void changeCategoryForProvider(int providerid, int categoryid, boolean isEnabled){
         ContentValues values = new ContentValues();
-        values.put(CATEGORY_ID, id);
-        values.put(CATEGORY_NAME, name);
-        db.insert(CATEGORY_TABLE, null, values);
+        values.put(ENABLED, isEnabled);
+        db.update(PREFERENCE_TABLE, values, PREF_PROVIDERID + "=" + providerid + " AND "
+                + PREF_CATEGORY_ID + "=" + categoryid, null);
+    }
+    
+    /**
+     * Returns all rows in the preferences table as a Cursor.
+     * @return Cursor containing all preferences
+     */
+    public Cursor getPreferences(){
+        return db.query(PREFERENCE_TABLE, null, null, null, null, null, null);
     }
 
     /**
