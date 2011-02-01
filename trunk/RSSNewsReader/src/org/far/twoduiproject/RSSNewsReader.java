@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,10 +38,12 @@ public class RSSNewsReader extends ListActivity {
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
         mDbHelper.clear();
         try {
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 0, mDbHelper);
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"), 1, mDbHelper);
-            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"), 2, mDbHelper);
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"), 3, mDbHelper);
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 0, mDbHelper, Xml.Encoding.UTF_8);
+            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_business.xml"), 0, mDbHelper, Xml.Encoding.ISO_8859_1);
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"), 1, mDbHelper, Xml.Encoding.UTF_8);
+            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"), 2, mDbHelper, Xml.Encoding.ISO_8859_1);
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"), 3, mDbHelper, Xml.Encoding.UTF_8);
+            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_technology.xml"), 3, mDbHelper, Xml.Encoding.ISO_8859_1);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

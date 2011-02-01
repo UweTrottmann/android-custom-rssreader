@@ -5,7 +5,6 @@ import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Contacts.People;
 import android.widget.ExpandableListAdapter;
 import android.widget.SimpleCursorTreeAdapter;
 
