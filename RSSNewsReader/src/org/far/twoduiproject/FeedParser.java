@@ -20,14 +20,11 @@ import android.sax.EndElementListener;
 import android.sax.EndTextElementListener;
 import android.sax.RootElement;
 import android.util.Xml;
+import android.widget.Toast;
 
 public class FeedParser {
 
     static SimpleDateFormat FORMATTER = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-
-//    public FeedParser(Context context) {
-//        mDbHelper = DatabaseHelper.getInstance(context);
-//    }
 
     /**
      * Parse data from an RSS 2.0 formatted input stream into the database.
@@ -37,7 +34,7 @@ public class FeedParser {
      * @throws IOException
      * @throws SAXException
      */
-    public static void parseAtomStream(InputStream atomstream, final int categoryid, final DatabaseHelper mDbHelper) throws IOException,
+    public static void parseAtomStream(InputStream atomstream, final int categoryid, final DatabaseHelper mDbHelper, Xml.Encoding encoding) throws IOException,
             SAXException {
         final ContentValues itemvalues = new ContentValues();
 
@@ -82,7 +79,7 @@ public class FeedParser {
 
         mDbHelper.beginTransaction();
         try {
-            Xml.parse(atomstream, Xml.Encoding.UTF_8, root.getContentHandler());
+            Xml.parse(atomstream, encoding, root.getContentHandler());
             mDbHelper.setTransactionSuccessful();
         } finally {
             mDbHelper.endTransaction();
@@ -180,8 +177,10 @@ public class FeedParser {
             Xml.parse(in, Xml.Encoding.UTF_8, root.getContentHandler());
             db.setTransactionSuccessful();
         } catch (IOException e) {
+            Toast.makeText(context, "IO error while reading in config.xml", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } catch (SAXException e) {
+            Toast.makeText(context, "SAX error while reading in config.xml", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } finally {
             db.endTransaction();
