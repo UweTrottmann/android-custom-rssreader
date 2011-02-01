@@ -24,14 +24,17 @@
 			<pcategory>
 				<id>0</id>
 				<path>bbc_business_atom2.xml</path>
+				<encoding>UTF_8</encoding>
 			</pcategory>
 			<pcategory>
 				<id>1</id>
 				<path>bbc_politics_atom2.xml</path>
+				<encoding>UTF_8</encoding>
 			</pcategory>
 			<pcategory>
 				<id>3</id>
 				<path>bbc_technology_atom2.xml</path>
+				<encoding>UTF_8</encoding>
 			</pcategory>
 		</provider>
 		<provider>
@@ -40,14 +43,17 @@
 			<pcategory>
 				<id>0</id>
 				<path>cnn_business.xml</path>
+				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 			<pcategory>
 				<id>2</id>
 				<path>cnn_sports.xml</path>
+				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 			<pcategory>
 				<id>3</id>
 				<path>cnn_technology.xml</path>
+				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 		</provider>
 	</providers>
