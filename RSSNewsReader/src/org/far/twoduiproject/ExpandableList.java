@@ -26,6 +26,7 @@ public class ExpandableList extends ExpandableListActivity {
 
         // Query for categories
         Cursor groupCursor = mDbHelper.getCategories();
+        startManagingCursor(groupCursor);
 
         // Cache the ID column index
         mGroupIdColumnIndex = groupCursor.getColumnIndexOrThrow(DatabaseHelper.CATEGORY_ID);

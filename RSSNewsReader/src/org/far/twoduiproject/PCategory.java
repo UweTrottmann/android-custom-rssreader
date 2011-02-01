@@ -3,10 +3,12 @@ package org.far.twoduiproject;
 public class PCategory{
     private int id;
     private String path;
+    private String encoding;
     
-    public PCategory(int id, String path){
-        this.setId(id);
-        this.setPath(path);
+    public PCategory(int id, String path, String encoding){
+        this.id = id;
+        this.path = path;
+        this.encoding = encoding;
     }
 
     public void setPath(String path) {
@@ -23,5 +25,13 @@ public class PCategory{
 
     public int getId() {
         return id;
+    }
+
+    public void setEncoding(String encoding) {
+        this.encoding = encoding;
+    }
+
+    public String getEncoding() {
+        return encoding;
     }
 }

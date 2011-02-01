@@ -34,8 +34,8 @@ public class FeedParser {
      * @throws IOException
      * @throws SAXException
      */
-    public static void parseAtomStream(InputStream atomstream, final int categoryid, final DatabaseHelper mDbHelper, Xml.Encoding encoding) throws IOException,
-            SAXException {
+    public static void parseAtomStream(InputStream atomstream, final int categoryid,
+            final DatabaseHelper mDbHelper, Xml.Encoding encoding) throws IOException, SAXException {
         final ContentValues itemvalues = new ContentValues();
 
         RootElement root = new RootElement("rss");
@@ -127,6 +127,7 @@ public class FeedParser {
                             .getAsInteger(DatabaseHelper.PROVIDER_ID));
                     catvalues.put(DatabaseHelper.FEEDPATH, category.getPath());
                     catvalues.put(DatabaseHelper.PREF_CATEGORY_ID, category.getId());
+                    catvalues.put(DatabaseHelper.PREF_ENCODING, category.getEncoding());
 
                     db.insert(DatabaseHelper.PREFERENCE_TABLE, null, catvalues);
                     catvalues.clear();
@@ -153,7 +154,8 @@ public class FeedParser {
         pcategory.setEndElementListener(new EndElementListener() {
             @Override
             public void end() {
-                catMap.add(new PCategory(catinfo.getAsInteger("id"), catinfo.getAsString("path")));
+                catMap.add(new PCategory(catinfo.getAsInteger("id"), catinfo.getAsString("path"),
+                        catinfo.getAsString("encoding")));
                 catinfo.clear();
             }
         });
@@ -166,7 +168,13 @@ public class FeedParser {
         pcategory.getChild("path").setEndTextElementListener(new EndTextElementListener() {
             @Override
             public void end(String body) {
-                catinfo.put("path", body.trim());
+                catinfo.put("path", body);
+            }
+        });
+        pcategory.getChild("encoding").setEndTextElementListener(new EndTextElementListener() {
+            @Override
+            public void end(String body) {
+                catinfo.put("encoding", body);
             }
         });
 
@@ -177,10 +185,12 @@ public class FeedParser {
             Xml.parse(in, Xml.Encoding.UTF_8, root.getContentHandler());
             db.setTransactionSuccessful();
         } catch (IOException e) {
-            Toast.makeText(context, "IO error while reading in config.xml", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "IO error while reading in config.xml", Toast.LENGTH_LONG)
+                    .show();
             e.printStackTrace();
         } catch (SAXException e) {
-            Toast.makeText(context, "SAX error while reading in config.xml", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "SAX error while reading in config.xml", Toast.LENGTH_LONG)
+                    .show();
             e.printStackTrace();
         } finally {
             db.endTransaction();

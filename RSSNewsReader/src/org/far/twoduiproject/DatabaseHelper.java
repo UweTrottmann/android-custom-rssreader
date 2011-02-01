@@ -11,7 +11,7 @@ import android.util.Log;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "rssdb";
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static final String ITEM_TABLE = "items";
 
@@ -51,6 +51,8 @@ public class DatabaseHelper {
 
     public static final String PREF_CATEGORY_ID = "pref_categoryid";
 
+    protected static final String PREF_ENCODING = "pref_encoding";
+
     private static DatabaseHelper _instance;
 
     private SQLiteDatabase db;
@@ -77,29 +79,37 @@ public class DatabaseHelper {
         return _instance;
     }
 
+    /**
+     * Adds a news item with specified category to the item table.
+     * 
+     * @param itemvalues
+     * @param categoryid
+     */
     public void addItem(ContentValues itemvalues, int categoryid) {
         itemvalues.put(ITEM_CATEGORY, categoryid);
         db.insert(ITEM_TABLE, null, itemvalues);
     }
-    
+
     /**
      * Changes the enabled state of the given category for the given provider.
+     * 
      * @param providerid
      * @param categoryid
      * @param isEnabled
      */
-    public void changeCategoryState(int providerid, int categoryid, boolean isEnabled){
+    public void changeCategoryState(int providerid, int categoryid, boolean isEnabled) {
         ContentValues values = new ContentValues();
         values.put(ENABLED, isEnabled);
         db.update(PREFERENCE_TABLE, values, PREF_PROVIDERID + "=" + providerid + " AND "
                 + PREF_CATEGORY_ID + "=" + categoryid, null);
     }
-    
+
     /**
      * Returns all rows in the preferences table as a Cursor.
+     * 
      * @return Cursor containing all preferences
      */
-    public Cursor getPreferences(){
+    public Cursor getPreferences() {
         return db.query(PREFERENCE_TABLE, null, null, null, null, null, null);
     }
 
@@ -113,7 +123,7 @@ public class DatabaseHelper {
     }
 
     /**
-     * Call this to get all news items for a specified category.
+     * Returns all news items for a specified category in a Cursor.
      * 
      * @param category_id
      * @return Cursor containing the news items
@@ -135,14 +145,26 @@ public class DatabaseHelper {
         db.endTransaction();
     }
 
+    /**
+     * Drops all tables in the database and recreates them with the initial
+     * dataset based on /assets/config.xml.
+     */
     public void clear() {
         mOpenHelper.clear();
     }
 
+    public void clearExistingFeeds() {
+        mOpenHelper.clearExistingFeeds();
+    }
+
     private class OpenHelper extends SQLiteOpenHelper {
 
+        private static final String CREATE_ITEM_TABLE = "create table " + ITEM_TABLE + " (" + ITEM_ID + " int primary key," + TITLE
+                            + " text," + LINK + " text default ''," + DESCRIPTION + " text default '',"
+                            + PUBDATE + " text default ''," + ITEM_CATEGORY + " int references "
+                            + CATEGORY_TABLE + "(" + CATEGORY_ID + ")" + ");";
         private Context mContext;
-        
+
         private OpenHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.mContext = context;
@@ -162,26 +184,20 @@ public class DatabaseHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table " + ITEM_TABLE + " ("
-                    + ITEM_ID + " int primary key,"
-                    + TITLE + " text,"
-                    + LINK + " text default '',"
-                    + DESCRIPTION + " text default '',"
-                    + PUBDATE + " text default '',"
-                    + ITEM_CATEGORY + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + ")" + ");");
+            // create database schema
+            db.execSQL(CREATE_ITEM_TABLE);
             db.execSQL("create table " + CATEGORY_TABLE + " (" + CATEGORY_ID + " int primary key,"
                     + CATEGORY_NAME + " text default ''" + ");");
-            db.execSQL("create table " + PREFERENCE_TABLE + " ("
-                    + PREF_PROVIDERID + " int references " + PROVIDER_TABLE + "(" + PROVIDER_ID + "),"
-                    + PREF_CATEGORY_ID + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID + "),"
-                    + FEEDPATH + " text default '',"
-                    + ENABLED + " int default 1"
+            db.execSQL("create table " + PREFERENCE_TABLE + " (" + PREF_PROVIDERID
+                    + " int references " + PROVIDER_TABLE + "(" + PROVIDER_ID + "),"
+                    + PREF_CATEGORY_ID + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID
+                    + ")," + FEEDPATH + " text default ''," + ENABLED + " int default 1,"
+                    + PREF_ENCODING + " text default 'UTF_8'"
                     + ");");
-            db.execSQL("create table " + PROVIDER_TABLE + " ("
-                    + PROVIDER_ID + " int primary key,"
-                    + PROVIDER_NAME + " text default ''"
-                    + ");");
-            
+            db.execSQL("create table " + PROVIDER_TABLE + " (" + PROVIDER_ID + " int primary key,"
+                    + PROVIDER_NAME + " text default ''" + ");");
+
+            // insert inital dataset as specified in /assets/config.xml
             FeedParser.parseInitialSetup(db, mContext);
         }
 
@@ -199,6 +215,11 @@ public class DatabaseHelper {
                 onCreate(db);
                 return;
             }
+        }
+
+        public void clearExistingFeeds() {
+            db.execSQL("DROP TABLE IF EXISTS " + ITEM_TABLE);
+            db.execSQL(CREATE_ITEM_TABLE);
         }
 
     }

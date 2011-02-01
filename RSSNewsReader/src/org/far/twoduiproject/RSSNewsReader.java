@@ -2,6 +2,7 @@
 package org.far.twoduiproject;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.xml.sax.SAXException;
 
@@ -29,28 +30,39 @@ public class RSSNewsReader extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
+
         doFirstRunSetup();
 
         /*
          * All of the following is for testing purposes only, will be replaced
          * with actual frontend (listviews, etc.)
          */
-        mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
-        mDbHelper.clear();
-        try {
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 0, mDbHelper, Xml.Encoding.UTF_8);
-            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_business.xml"), 0, mDbHelper, Xml.Encoding.ISO_8859_1);
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"), 1, mDbHelper, Xml.Encoding.UTF_8);
-            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"), 2, mDbHelper, Xml.Encoding.ISO_8859_1);
-            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"), 3, mDbHelper, Xml.Encoding.UTF_8);
-            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_technology.xml"), 3, mDbHelper, Xml.Encoding.ISO_8859_1);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SAXException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        // mDbHelper.clear();
+        // try {
+        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"),
+        // 0, mDbHelper, Xml.Encoding.UTF_8);
+        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_business.xml"),
+        // 0,
+        // mDbHelper, Xml.Encoding.ISO_8859_1);
+        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"),
+        // 1,
+        // mDbHelper, Xml.Encoding.UTF_8);
+        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"),
+        // 2,
+        // mDbHelper, Xml.Encoding.ISO_8859_1);
+        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"),
+        // 3, mDbHelper, Xml.Encoding.UTF_8);
+        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_technology.xml"),
+        // 3,
+        // mDbHelper, Xml.Encoding.ISO_8859_1);
+        // } catch (IOException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // } catch (SAXException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
 
         fillData();
     }
@@ -101,12 +113,9 @@ public class RSSNewsReader extends ListActivity {
 
                 return true;
             case R.id.menu_update:
-
-                // TODO: clear database, reparse all items and refresh list view
-
                 Toast.makeText(getApplicationContext(),
-                        "TODO: clear database, reparse all items and refresh list view now",
-                        Toast.LENGTH_LONG).show();
+                        "Clearing database and parsing selected feeds", Toast.LENGTH_LONG).show();
+                updateFeeds();
                 return true;
             case R.id.menu_showtreeview:
                 startActivity(new Intent(getApplicationContext(), ExpandableList.class));
@@ -134,6 +143,55 @@ public class RSSNewsReader extends ListActivity {
             startActivity(new Intent(getApplicationContext(), MyNewsReaderSettings.class));
             // set firstrun false
             prefs.edit().putBoolean(KEY_FIRSTRUN, false).commit();
+            // get all feeds in, user has to manually update if he changed
+            // preferences
+            updateFeeds();
         }
+    }
+
+    /**
+     * Clears existing news items and parses the feeds which are set enabled in
+     * the preferences table.
+     */
+    private void updateFeeds() {
+        new Thread(new Runnable() {
+            public void run() {
+                mDbHelper.clearExistingFeeds();
+                Cursor prefs = mDbHelper.getPreferences();
+                prefs.moveToFirst();
+
+                while (!prefs.isAfterLast()) {
+
+                    // check if category is enabled for provider
+                    if (prefs.getInt(prefs.getColumnIndexOrThrow(DatabaseHelper.ENABLED)) == 1) {
+
+                        // get encoding and category id
+                        Xml.Encoding encoding = Xml.Encoding.valueOf(prefs.getString(prefs
+                                .getColumnIndexOrThrow(DatabaseHelper.PREF_ENCODING)));
+                        int categoryid = prefs.getInt(prefs
+                                .getColumnIndexOrThrow(DatabaseHelper.PREF_CATEGORY_ID));
+
+                        // open xml and parse it into the database
+                        try {
+                            InputStream in = getResources().getAssets().open(
+                                    prefs.getString(prefs
+                                            .getColumnIndexOrThrow(DatabaseHelper.FEEDPATH)));
+                            FeedParser.parseAtomStream(in, categoryid, mDbHelper, encoding);
+                        } catch (IOException e) {
+                            Toast.makeText(getApplicationContext(), "Could not open feed",
+                                    Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        } catch (SAXException e) {
+                            Toast.makeText(getApplicationContext(), "Could not parse feed",
+                                    Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+
+                    prefs.moveToNext();
+                }
+                prefs.close();
+            }
+        }).start();
     }
 }
