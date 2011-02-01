@@ -23,23 +23,21 @@ import android.util.Xml;
 
 public class FeedParser {
 
-    private DatabaseHelper mDbHelper;
-
     static SimpleDateFormat FORMATTER = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
 
-    public FeedParser(Context context) {
-        mDbHelper = DatabaseHelper.getInstance(context);
-    }
+//    public FeedParser(Context context) {
+//        mDbHelper = DatabaseHelper.getInstance(context);
+//    }
 
     /**
-     * Preliminary method to parse data from an RSS 2.0 formatted input stream.
+     * Parse data from an RSS 2.0 formatted input stream into the database.
      * 
      * @param atomstream
      * @param categoryid
      * @throws IOException
      * @throws SAXException
      */
-    public void parseAtomStream(InputStream atomstream, final int categoryid) throws IOException,
+    public static void parseAtomStream(InputStream atomstream, final int categoryid, final DatabaseHelper mDbHelper) throws IOException,
             SAXException {
         final ContentValues itemvalues = new ContentValues();
 
