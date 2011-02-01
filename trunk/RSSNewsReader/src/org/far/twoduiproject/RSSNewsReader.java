@@ -1,6 +1,10 @@
 
 package org.far.twoduiproject;
 
+import java.io.IOException;
+
+import org.xml.sax.SAXException;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 
 public class RSSNewsReader extends ListActivity {
     private static final String KEY_FIRSTRUN = "firstrun";
+
     private DatabaseHelper mDbHelper;
 
     /** Called when the activity is first created. */
@@ -30,33 +35,50 @@ public class RSSNewsReader extends ListActivity {
          * with actual frontend (listviews, etc.)
          */
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
-        
+        mDbHelper.clear();
+        try {
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"), 0, mDbHelper);
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"), 1, mDbHelper);
+            FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"), 2, mDbHelper);
+            FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"), 3, mDbHelper);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SAXException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         fillData();
     }
 
     private void fillData() {
         Cursor categories = mDbHelper.getCategories();
         startManagingCursor(categories);
-        
+
         String[] from;
         int[] to;
         int layout;
-        
+
         // Create an array to specify the fields we want to display in the
         // list
-        from = new String[] { DatabaseHelper.CATEGORY_NAME };
+        from = new String[] {
+            DatabaseHelper.CATEGORY_NAME
+        };
 
         // and an array of the fields we want to bind those fields to
-        to = new int[] { R.id.categoryname };
+        to = new int[] {
+            R.id.categoryname
+        };
 
         layout = R.layout.categories_simple;
-        
-     // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(), layout,
-                categories, from, to);
-        
+
+        // Now create a simple cursor adapter and set it to display
+        SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(),
+                layout, categories, from, to);
+
         setListAdapter(categoriesAdapter);
-        
+
     }
 
     @Override
@@ -83,6 +105,9 @@ public class RSSNewsReader extends ListActivity {
                         "TODO: clear database, reparse all items and refresh list view now",
                         Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.menu_showtreeview:
+                startActivity(new Intent(getApplicationContext(), ExpandableList.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -97,10 +122,11 @@ public class RSSNewsReader extends ListActivity {
         SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
         boolean isFirstRun = prefs.getBoolean(KEY_FIRSTRUN, true);
-        
+
         if (isFirstRun) {
             // show preferences
-            Toast.makeText(getApplicationContext(), "First run, showing settings (use back button to go to mainscreen again)",
+            Toast.makeText(getApplicationContext(),
+                    "First run, showing settings (use back button to go to mainscreen again)",
                     Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), MyNewsReaderSettings.class));
             // set firstrun false
