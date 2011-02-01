@@ -34,36 +34,6 @@ public class RSSNewsReader extends ListActivity {
 
         doFirstRunSetup();
 
-        /*
-         * All of the following is for testing purposes only, will be replaced
-         * with actual frontend (listviews, etc.)
-         */
-        // mDbHelper.clear();
-        // try {
-        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_business_atom2.xml"),
-        // 0, mDbHelper, Xml.Encoding.UTF_8);
-        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_business.xml"),
-        // 0,
-        // mDbHelper, Xml.Encoding.ISO_8859_1);
-        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_politics.xml"),
-        // 1,
-        // mDbHelper, Xml.Encoding.UTF_8);
-        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_sports.xml"),
-        // 2,
-        // mDbHelper, Xml.Encoding.ISO_8859_1);
-        // FeedParser.parseAtomStream(getResources().getAssets().open("bbc_technology_atom2.xml"),
-        // 3, mDbHelper, Xml.Encoding.UTF_8);
-        // FeedParser.parseAtomStream(getResources().getAssets().open("cnn_technology.xml"),
-        // 3,
-        // mDbHelper, Xml.Encoding.ISO_8859_1);
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // } catch (SAXException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-
         fillData();
     }
 
