@@ -1,6 +1,8 @@
 
 package org.far.twoduiproject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -11,8 +13,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +27,8 @@ import android.widget.Toast;
 
 public class RSSNewsReader extends ListActivity {
     private static final String KEY_FIRSTRUN = "firstrun";
+
+    public static final String TAG = "RSSNewsReader";
 
     private DatabaseHelper mDbHelper;
 
@@ -36,8 +43,8 @@ public class RSSNewsReader extends ListActivity {
         doFirstRunSetup();
 
         fillData();
-        
-        //example of usage MeasurementModule
+
+        // example of usage MeasurementModule
         MeasurementModule.initializeSession(getApplicationContext());
     }
 
@@ -92,11 +99,17 @@ public class RSSNewsReader extends ListActivity {
                 updateFeeds();
                 return true;
             case R.id.menu_showtreeview:
-            	//example of usage for MeasurementModule
-            	MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
-            	
+                // example of usage for MeasurementModule
+                MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
+
                 startActivity(new Intent(getApplicationContext(), ExpandableList.class));
                 return true;
+            case R.id.menu_dumpmeasurements:
+                if (isExtStorageAvailable()) {
+                    new DumpMeasurementsTask().execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No external storage available", Toast.LENGTH_SHORT).show();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -124,6 +137,10 @@ public class RSSNewsReader extends ListActivity {
             // preferences
             updateFeeds();
         }
+    }
+
+    private boolean isExtStorageAvailable() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
@@ -170,5 +187,79 @@ public class RSSNewsReader extends ListActivity {
                 prefs.close();
             }
         }).start();
+    }
+
+    private class DumpMeasurementsTask extends AsyncTask<Void, Void, String> {
+
+        // can use UI thread here
+        @Override
+        protected void onPreExecute() {
+            Toast.makeText(getApplicationContext(), "Dumping measurements to sd card",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        // automatically done on worker thread (separate from UI thread)
+        @Override
+        protected String doInBackground(final Void... args) {
+
+            // create directory
+            File exportDir = new File(Environment.getExternalStorageDirectory(),
+                    "rssreader_measurements");
+            if (!exportDir.exists()) {
+                exportDir.mkdirs();
+            }
+
+            // create file, if it doesn't exist and open outchannel
+            File file = new File(exportDir, "measurements.txt");
+            String errorMsg = null;
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage(), e);
+                errorMsg = e.getMessage();
+            }
+
+            // get measurements table and write it to the file
+            FileOutputStream outStream;
+            String measuretext;
+            Cursor measurements = mDbHelper.getMeasurements();
+            measurements.moveToFirst();
+
+            try {
+                outStream = new FileOutputStream(file);
+
+                while (!measurements.isAfterLast()) {
+                    measuretext = measurements.getString(measurements
+                            .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_ID))
+                            + "|";
+                    measuretext += measurements.getString(measurements
+                            .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_TIME))
+                            + "\n";
+                    outStream.write(measuretext.getBytes());
+                    measurements.moveToNext();
+                }
+
+                outStream.close();
+            } catch (IOException e) {
+                Log.e(TAG, e.getMessage(), e);
+                errorMsg = e.getMessage();
+            }
+
+            measurements.close();
+
+            return errorMsg;
+        }
+
+        // can use UI thread here
+        @Override
+        protected void onPostExecute(final String errorMsg) {
+            if (errorMsg == null) {
+                Toast.makeText(getApplicationContext(), "Dump successful", Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Dump failed" + " - " + errorMsg,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
