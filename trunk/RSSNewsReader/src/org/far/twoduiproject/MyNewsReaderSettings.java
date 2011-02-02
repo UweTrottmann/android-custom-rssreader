@@ -30,7 +30,7 @@ public class MyNewsReaderSettings extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				startActivity(new Intent(MyNewsReaderSettings.this, CnnActivity.class ));
+				startActivity(new Intent(MyNewsReaderSettings.this, PreferenceActivity.class ));
 			
 			}
         
@@ -41,7 +41,7 @@ public class MyNewsReaderSettings extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(MyNewsReaderSettings.this,BbcActivity.class));
+				startActivity(new Intent(MyNewsReaderSettings.this,PreferenceActivity.class));
 				
 			}
         	
