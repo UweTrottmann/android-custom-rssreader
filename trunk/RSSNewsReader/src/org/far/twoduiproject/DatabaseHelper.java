@@ -11,7 +11,7 @@ import android.util.Log;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "rssdb";
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String ITEM_TABLE = "items";
 
@@ -143,6 +143,14 @@ public class DatabaseHelper {
     public Cursor getItemsForCategory(int category_id) {
         return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null,
                 PUBDATE + " desc");
+    }
+    
+    /**
+     * Returns the measurement table as a Cursor.
+     * @return
+     */
+    public Cursor getMeasurements(){
+        return db.query(MEASUREMENT_TABLE, null, null, null, null, null, null);
     }
 
     public void beginTransaction() {

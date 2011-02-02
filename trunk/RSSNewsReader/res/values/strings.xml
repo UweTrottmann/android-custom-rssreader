@@ -28,4 +28,5 @@
     <string name="cnn_Technology">Technology</string>
     <string name="cnn_Technology_Link">http://rss.cnn.com/rss/edition_technology.rss</string>
     <string name="show_treeview">Show TreeView</string>
+    <string name="dumpmeasurements">Dump measurements</string>
 </resources>
