@@ -15,6 +15,7 @@
         <activity android:name="BbcActivity"></activity>
         <activity android:name="CnnActivity"></activity>
         <activity android:name="ExpandableList"></activity>
+        <activity android:name="PreferenceActivity"></activity>
 
     </application>
     <uses-sdk android:minSdkVersion="4" />
