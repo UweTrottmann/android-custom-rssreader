@@ -4,6 +4,7 @@ package org.far.twoduiproject;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.far.twoduiproject.measurement.MeasurementModule;
 import org.xml.sax.SAXException;
 
 import android.app.ListActivity;
@@ -35,6 +36,9 @@ public class RSSNewsReader extends ListActivity {
         doFirstRunSetup();
 
         fillData();
+        
+        //example of usage MeasurementModule
+        MeasurementModule.initializeSession(getApplicationContext());
     }
 
     private void fillData() {
@@ -88,6 +92,9 @@ public class RSSNewsReader extends ListActivity {
                 updateFeeds();
                 return true;
             case R.id.menu_showtreeview:
+            	//example of usage for MeasurementModule
+            	MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
+            	
                 startActivity(new Intent(getApplicationContext(), ExpandableList.class));
                 return true;
             default:

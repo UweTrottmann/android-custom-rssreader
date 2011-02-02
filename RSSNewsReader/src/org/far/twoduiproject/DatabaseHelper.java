@@ -20,6 +20,8 @@ public class DatabaseHelper {
     public static final String PREFERENCE_TABLE = "preferences";
 
     public static final String PROVIDER_TABLE = "providers";
+    
+    public static final String MEASUREMENT_TABLE = "measurements";
 
     public static final String ITEM_ID = "_id";
 
@@ -52,6 +54,12 @@ public class DatabaseHelper {
     public static final String PREF_CATEGORY_ID = "pref_categoryid";
 
     protected static final String PREF_ENCODING = "pref_encoding";
+    
+    public static final String MEASUREMENT_ID = "measurement_id";
+    
+    public static final String MEASUREMENT_TIME = "measurement_time";
+    
+    public static final String LIST_TYPE = "list_type";
 
     private static DatabaseHelper _instance;
 
@@ -88,6 +96,10 @@ public class DatabaseHelper {
     public void addItem(ContentValues itemvalues, int categoryid) {
         itemvalues.put(ITEM_CATEGORY, categoryid);
         db.insert(ITEM_TABLE, null, itemvalues);
+    }
+    
+    public void addMeasurement(ContentValues measurementValues){
+    	db.insert(MEASUREMENT_TABLE, null, measurementValues);
     }
 
     /**
@@ -178,6 +190,7 @@ public class DatabaseHelper {
             db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); //FH
             db.setVersion(DATABASE_VERSION);
             onCreate(db);
         }
@@ -196,6 +209,12 @@ public class DatabaseHelper {
                     + ");");
             db.execSQL("create table " + PROVIDER_TABLE + " (" + PROVIDER_ID + " int primary key,"
                     + PROVIDER_NAME + " text default ''" + ");");
+            
+            //FH:
+            db.execSQL("create table " + MEASUREMENT_TABLE + " (" + MEASUREMENT_ID + " int primary key,"
+                    + LIST_TYPE + " text default ''," 
+                    + MEASUREMENT_TIME + " int default 0" 
+                    + ");");
 
             // insert inital dataset as specified in /assets/config.xml
             FeedParser.parseInitialSetup(db, mContext);
@@ -211,6 +230,7 @@ public class DatabaseHelper {
                 db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
                 db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
                 db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
+                db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); //FH 
                 db.setVersion(DATABASE_VERSION);
                 onCreate(db);
                 return;

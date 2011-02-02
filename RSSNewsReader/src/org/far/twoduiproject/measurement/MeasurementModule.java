@@ -1,5 +1,11 @@
 package org.far.twoduiproject.measurement;
 
+import org.far.twoduiproject.DatabaseHelper;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.util.Log;
+
 /**
  * This class is in charge of doing all the measurements for the usability testing.
  * See each method description for more details.
@@ -9,14 +15,17 @@ package org.far.twoduiproject.measurement;
  */
 public class MeasurementModule {
 	
-	public static final int SIMPLE_LIST = 0;
-	public static final int FISH_EYE_LIST = 1;
-	public static final int TREE_LIST = 2;
+	public static final String SIMPLE_LIST = "SIMPLE_LIST";
+	public static final String FISHEYE_LIST = "FISH_EYE_LIST";
+	public static final String TREE_VIEW_LIST = "TREE_VIEW_LIST";
 	
-	private static long measurementID = 0;
+	private static final String TAG = "RSSNewsReader.MeasurementModule";
+	
+	
+	//private static long measurementID = 0;
 	private static Timer timer = null;
-	private static int listType = -1; 
-	
+	private static String listType = "";
+	private static DatabaseHelper dbHelper = null;
 	
 	//*****************************PUBLIC METHODS*****************************/
 	
@@ -24,9 +33,12 @@ public class MeasurementModule {
 	 * Call this method in the onResume() method of the main activity in order to set up a new instance
 	 * of the measurement module.
 	 */
-	public static void initializeSession(){
+	public static void initializeSession(Context context){
 		//we create a new id for storing the result in the database
-		measurementID = System.currentTimeMillis();
+		//MeasurementModule.measurementID = System.currentTimeMillis();
+		
+		//we get an instance of the database helper
+		dbHelper = DatabaseHelper.getInstance(context);
 		
 		//create new instance of the timer
 		timer = new Timer();
@@ -38,15 +50,15 @@ public class MeasurementModule {
 	 * 
 	 * @param listType This is the list type. See the possible static values in MeasurementModule
 	 */
-	public static void startMeasurement(int listType){
+	public static void startMeasurement(String listType){
 		//check if the MeasurementModule was already initialized
 		if(timer != null){
 			//it's initialized so we start the timer
 			timer.start();
 		}
 		else{
-			//there was no previously initialized MeasurementModule so we create a new ID
-			measurementID = System.currentTimeMillis();
+			//we create a new timer
+			timer = new Timer();
 			
 			//start timer
 			timer.start();
@@ -86,8 +98,7 @@ public class MeasurementModule {
 	 */
 	public static void destroySession(){
 		timer = null;
-		measurementID = 0;
-		MeasurementModule.listType = -1;
+		MeasurementModule.listType = "";
 	}
 	
 	//*****************************PRIVATE METHODS*****************************/
@@ -98,9 +109,27 @@ public class MeasurementModule {
 	 */
 	private static void storeMeasurementDB(){
 		//get measurement
-		long measurement = timer.getTotalTime();
+		long measurementTime = timer.getTotalTime();
 		
-		//TODO do database calls
+		if(dbHelper != null){
+			//do actual transaction
+			ContentValues values = new ContentValues();
+			
+			values.put(DatabaseHelper.MEASUREMENT_TIME, measurementTime);
+			values.put(DatabaseHelper.LIST_TYPE, listType);
+			
+			dbHelper.beginTransaction();
+			try{
+				dbHelper.addMeasurement(values);
+				dbHelper.setTransactionSuccessful();
+				Log.i(TAG, "Inserted measurement in table (time, list type): " + measurementTime + ", " + listType);
+			} finally {
+				dbHelper.endTransaction();
+	        }
+			
+		}
+		
+		
 	}
 
 }

@@ -1,11 +1,15 @@
 
 package org.far.twoduiproject;
 
+import org.far.twoduiproject.measurement.MeasurementModule;
+
 import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
 
 /**
@@ -46,6 +50,23 @@ public class ExpandableList extends ExpandableListActivity {
                     android.R.id.text1
                 });
         setListAdapter(mAdapter);
+    }
+    
+    @Override
+    public boolean onChildClick(ExpandableListView parent, View v,
+    		int groupPosition, int childPosition, long id) {
+    	//example of usage for MeasurementModule
+    	MeasurementModule.stopMeasurement();
+    	
+    	return true;
+    }
+    
+    @Override
+    protected void onStop() {
+    	
+    	MeasurementModule.destroySession();
+    	
+    	super.onStop();
     }
 
     public class MyExpandableListAdapter extends SimpleCursorTreeAdapter {
