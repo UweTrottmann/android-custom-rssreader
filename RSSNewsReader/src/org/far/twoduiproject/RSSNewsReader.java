@@ -232,6 +232,9 @@ public class RSSNewsReader extends ListActivity {
                     measuretext = measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_ID))
                             + "|";
+                    measuretext = measurements.getString(measurements
+                            .getColumnIndexOrThrow(DatabaseHelper.LIST_TYPE))
+                            + "|";
                     measuretext += measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_TIME))
                             + "\n";
