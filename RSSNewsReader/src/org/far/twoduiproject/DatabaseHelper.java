@@ -251,4 +251,9 @@ public class DatabaseHelper {
         }
 
     }
+
+	public Cursor getPreferencesWithProviderId(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
