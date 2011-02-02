@@ -210,7 +210,7 @@ public class RSSNewsReader extends ListActivity {
             }
 
             // create file, if it doesn't exist and open outchannel
-            File file = new File(exportDir, "measurements.txt");
+            File file = new File(exportDir, "measurements.csv");
             String errorMsg = null;
             try {
                 file.createNewFile();
@@ -228,13 +228,21 @@ public class RSSNewsReader extends ListActivity {
             try {
                 outStream = new FileOutputStream(file);
 
+                //write header for csv
+                measuretext = 
+                	DatabaseHelper.MEASUREMENT_ID + "," +
+					DatabaseHelper.LIST_TYPE + "," +
+					DatabaseHelper.MEASUREMENT_TIME +"\n";
+                
+                outStream.write(measuretext.getBytes());
+                
                 while (!measurements.isAfterLast()) {
                     measuretext = measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_ID))
-                            + "|";
-                    measuretext = measurements.getString(measurements
+                            + ",";
+                    measuretext += measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.LIST_TYPE))
-                            + "|";
+                            + ",";
                     measuretext += measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_TIME))
                             + "\n";
