@@ -9,8 +9,7 @@ import android.util.Log;
 /**
  * This class is in charge of doing all the measurements for the usability testing.
  * See each method description for more details.
- * 
- * @author Fernando Hernandez
+ *
  *
  */
 public class MeasurementModule {
@@ -110,19 +109,23 @@ public class MeasurementModule {
 	private static void storeMeasurementDB(){
 		//get measurement
 		long measurementTime = timer.getTotalTime();
+		long startTime = timer.getStartTime();
+		//long endTime = timer.getEndTime();
 		
 		if(dbHelper != null){
 			//do actual transaction
 			ContentValues values = new ContentValues();
 			
-			values.put(DatabaseHelper.MEASUREMENT_TIME, measurementTime);
+			
 			values.put(DatabaseHelper.LIST_TYPE, listType);
+			values.put(DatabaseHelper.MEASUREMENT_TIME, measurementTime);
+			values.put(DatabaseHelper.MEASUREMENT_ID, startTime);
 			
 			dbHelper.beginTransaction();
 			try{
 				dbHelper.addMeasurement(values);
 				dbHelper.setTransactionSuccessful();
-				Log.i(TAG, "Inserted measurement in table (time, list type): " + measurementTime + ", " + listType);
+				Log.i(TAG, "Inserted measurement in table (time, list type, startTime): " + measurementTime + ", " + listType + ", " + startTime);
 			} finally {
 				dbHelper.endTransaction();
 	        }

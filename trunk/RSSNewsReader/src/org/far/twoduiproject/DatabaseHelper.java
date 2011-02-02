@@ -219,9 +219,10 @@ public class DatabaseHelper {
                     + PROVIDER_NAME + " text default ''" + ");");
             
             //FH:
-            db.execSQL("create table " + MEASUREMENT_TABLE + " (" + MEASUREMENT_ID + " int primary key,"
+            db.execSQL("create table " + MEASUREMENT_TABLE 
+            		+ " (" + MEASUREMENT_ID + " integer primary key,"
                     + LIST_TYPE + " text default ''," 
-                    + MEASUREMENT_TIME + " int default 0" 
+                    + MEASUREMENT_TIME + " int default 0"
                     + ");");
 
             // insert inital dataset as specified in /assets/config.xml
