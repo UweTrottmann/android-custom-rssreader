@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="fill_parent"
     	android:layout_height="fill_parent" android:orientation="vertical">
-    <ListView android:id="@+id/android:list"
+    <org.far.twoduiproject.CustomListView android:id="@+id/android:list"
         android:layout_width="fill_parent"
-       	android:layout_height="fill_parent"></ListView> 	
+       	android:layout_height="fill_parent"></org.far.twoduiproject.CustomListView> 	
   	<TextView android:id="@+id/android:empty"
         android:layout_width="wrap_content"
        	android:layout_height="wrap_content"

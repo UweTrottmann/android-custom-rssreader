@@ -27,6 +27,12 @@ public class NewsList extends ListActivity {
         fillData(categoryid);
         
     }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((CustomListView) getListView()).setFirstRun();
+    }
 
     private void fillData(long categoryid) {
         Cursor newsitems = mDbHelper.getItemsForCategory((int) categoryid);
@@ -43,7 +49,8 @@ public class NewsList extends ListActivity {
         };
 
         // and an array of the fields we want to bind those fields to
-        if (RSSNewsReader.isSimpleList(getApplicationContext())) {
+        boolean isSimpleList = RSSNewsReader.isSimpleList(getApplicationContext());
+        if (isSimpleList) {
             to = new int[] {
                 R.id.categoryname
             };
@@ -63,6 +70,7 @@ public class NewsList extends ListActivity {
 
         setListAdapter(categoriesAdapter);
 
+        ((CustomListView) getListView()).setFirstRun();
     }
 
     @Override
