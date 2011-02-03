@@ -126,6 +126,15 @@ public class DatabaseHelper {
     }
 
     /**
+     * Returns all preferences for one provider.
+     * @param i
+     * @return Cursor with rows with given provider id
+     */
+    public Cursor getPreferencesWithProviderId(int providerid) {
+    	return db.query(PREFERENCE_TABLE, null, PREF_PROVIDERID + "=" + providerid, null, null, null, null);
+    }
+
+    /**
      * Returns all categories and their ids currently in the database.
      * 
      * @return
@@ -252,9 +261,4 @@ public class DatabaseHelper {
         }
 
     }
-
-	public Cursor getPreferencesWithProviderId(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
