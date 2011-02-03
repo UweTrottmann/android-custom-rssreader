@@ -30,6 +30,14 @@ public class RSSNewsReader extends ListActivity {
 
     public static final String TAG = "RSSNewsReader";
 
+    private static final String KEY_LISTTYPE = "listtype";
+
+    private static final int ID_SIMPLELIST = 0;
+
+    private static final int ID_FISHEYELIST = 1;
+
+    private static final int ID_TREEVIEWLIST = 2;
+
     private DatabaseHelper mDbHelper;
 
     /** Called when the activity is first created. */
@@ -98,21 +106,57 @@ public class RSSNewsReader extends ListActivity {
                         "Clearing database and parsing selected feeds", Toast.LENGTH_LONG).show();
                 updateFeeds();
                 return true;
-            case R.id.menu_showtreeview:
-                // example of usage for MeasurementModule
+            case R.id.menu_usesimple:
+                changeAndSaveListType(item, ID_SIMPLELIST);
+
+                // recreate, reload activity to use new list type
+
+                return true;
+            case R.id.menu_usefisheye:
+                changeAndSaveListType(item, ID_FISHEYELIST);
+
+                // recreate, reload activity to use new list type
+
+                return true;
+            case R.id.menu_usetree:
+                changeAndSaveListType(item, ID_TREEVIEWLIST);
+
+                // start measuring
                 MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
 
+                // start treeview activity
                 startActivity(new Intent(getApplicationContext(), ExpandableList.class));
                 return true;
             case R.id.menu_dumpmeasurements:
                 if (isExtStorageAvailable()) {
                     new DumpMeasurementsTask().execute();
                 } else {
-                    Toast.makeText(getApplicationContext(), "No external storage available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No external storage available",
+                            Toast.LENGTH_SHORT).show();
                 }
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Changes the checked state of the menu item and stores the selection of
+     * list type in a SharedPreference.
+     * 
+     * @param item
+     * @param listtypeID
+     */
+    private void changeAndSaveListType(MenuItem item, int listtypeID) {
+        // check/uncheck the item
+        if (item.isChecked()) {
+            item.setChecked(false);
+        } else {
+            item.setChecked(true);
+        }
+        // save selected listtype
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        prefs.edit().putInt(KEY_LISTTYPE, listtypeID).commit();
     }
 
     /**
@@ -230,12 +274,12 @@ public class RSSNewsReader extends ListActivity {
 
                 //write header for csv
                 measuretext = 
-                	DatabaseHelper.MEASUREMENT_ID + "," +
-					DatabaseHelper.LIST_TYPE + "," +
-					DatabaseHelper.MEASUREMENT_TIME +"\n";
+                    DatabaseHelper.MEASUREMENT_ID + "," +
+                    DatabaseHelper.LIST_TYPE + "," +
+                    DatabaseHelper.MEASUREMENT_TIME +"\n";
                 
                 outStream.write(measuretext.getBytes());
-                
+
                 while (!measurements.isAfterLast()) {
                     measuretext = measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_ID))

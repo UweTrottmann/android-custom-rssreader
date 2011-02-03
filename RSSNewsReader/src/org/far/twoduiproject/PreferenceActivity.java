@@ -3,7 +3,6 @@ package org.far.twoduiproject;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,9 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 public class PreferenceActivity extends ListActivity {
     /** Called when the activity is first created. */
@@ -29,7 +26,7 @@ public class PreferenceActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preference);
         
-        
+        mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
         
         //For CNN, provider id = 1, For BBC, provider id = 2
         mDbHelper.getPreferencesWithProviderId(1);
