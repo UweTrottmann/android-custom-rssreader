@@ -161,6 +161,13 @@ public class DatabaseHelper {
                 PUBDATE + " desc");
     }
     
+    public Cursor getItemsForEnabledCategory(int provider_id){
+    
+    	return db.query(PREFERENCE_TABLE, new String[] {PREF_CATEGORY_ID},ENABLED + " = 1 and " + PREF_PROVIDERID + " = " + String.valueOf(provider_id), 
+    			null, null, null, null);
+    }
+    
+    
     /**
      * Returns the measurement table as a Cursor.
      * @return
