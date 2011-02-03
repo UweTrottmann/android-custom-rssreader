@@ -45,9 +45,9 @@ public class RSSNewsReader extends ListActivity {
 
     private static final int ID_TREEVIEWLIST = 2;
 
-    private static final int EXPANDED_FONTSIZE = 25;
+    static final int EXPANDED_FONTSIZE = 30;
 
-    protected static final float NORMAL_FONTSIZE = 12;
+    protected static final float NORMAL_FONTSIZE = 8;
 
     private DatabaseHelper mDbHelper;
 
@@ -66,6 +66,12 @@ public class RSSNewsReader extends ListActivity {
         // example of usage MeasurementModule
         MeasurementModule.initializeSession(getApplicationContext());
     }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((CustomListView) getListView()).setFirstRun();
+    }
 
     private void fillData() {
         Cursor categories = mDbHelper.getCategories();
@@ -82,7 +88,8 @@ public class RSSNewsReader extends ListActivity {
         };
 
         // and an array of the fields we want to bind those fields to
-        if (RSSNewsReader.isSimpleList(getApplicationContext())) {
+        boolean isSimpleList = RSSNewsReader.isSimpleList(getApplicationContext());
+        if (isSimpleList) {
             to = new int[] {
                 R.id.categoryname
             };
@@ -102,6 +109,7 @@ public class RSSNewsReader extends ListActivity {
 
         setListAdapter(categoriesAdapter);
 
+        ((CustomListView) getListView()).setFirstRun();
     }
 
     @Override
@@ -135,8 +143,8 @@ public class RSSNewsReader extends ListActivity {
                 return true;
             case R.id.menu_usesimple:
                 changeAndSaveListType(item, ID_SIMPLELIST);
-                
-             // start measuring
+
+                // start measuring
                 MeasurementModule.startMeasurement(MeasurementModule.SIMPLE_LIST);
 
                 fillData();
@@ -144,8 +152,8 @@ public class RSSNewsReader extends ListActivity {
                 return true;
             case R.id.menu_usefisheye:
                 changeAndSaveListType(item, ID_FISHEYELIST);
-                
-             // start measuring
+
+                // start measuring
                 MeasurementModule.startMeasurement(MeasurementModule.FISHEYE_LIST);
 
                 fillData();
@@ -390,12 +398,12 @@ public class RSSNewsReader extends ListActivity {
                             lowerneighborid += 1;
                             if (upperneighborid >= 0) {
                                 ((TextView) listview.getChildAt(upperneighborid)).setTextSize(
-                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 7
                                                 - 1);
                             }
                             if (lowerneighborid < childcount) {
                                 ((TextView) listview.getChildAt(lowerneighborid)).setTextSize(
-                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 7
                                                 - 1);
                             }
                         }
