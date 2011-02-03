@@ -148,9 +148,7 @@ public class DatabaseHelper {
         return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
     }
 
-    public String getPreferenceTable() {
-		return PREFERENCE_TABLE;
-	}
+
 
 	/**
      * Returns all news items for a specified category in a Cursor.
