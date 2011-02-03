@@ -103,8 +103,8 @@ public class PreferenceActivity extends ListActivity {
 			disabledIds = disabledIds.substring(0,disabledIds.length()-1);
 			
 			
-			updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 1 where pref_category_id in " + enabledIds + "" ;
-			updateQueryDisabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 0 where pref_category_id in " + disabledIds + "";
+			updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 1 where pref_category_id in (" + enabledIds + ")" ;
+			updateQueryDisabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 0 where pref_category_id in (" + disabledIds + ")";
 			
 			mDbHelper.changeCategoryState(updateQueryEnabled, updateQueryDisabled);
 
