@@ -18,11 +18,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RSSNewsReader extends ListActivity {
@@ -37,6 +42,10 @@ public class RSSNewsReader extends ListActivity {
     private static final int ID_FISHEYELIST = 1;
 
     private static final int ID_TREEVIEWLIST = 2;
+
+    private static final int EXPANDED_FONTSIZE = 25;
+
+    protected static final float NORMAL_FONTSIZE = 12;
 
     private DatabaseHelper mDbHelper;
 
@@ -81,8 +90,63 @@ public class RSSNewsReader extends ListActivity {
         SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(),
                 layout, categories, from, to);
 
+        setFishEyeListener();
+
         setListAdapter(categoriesAdapter);
 
+    }
+
+    private void setFishEyeListener() {
+        getListView().setOnTouchListener(new OnTouchListener() {
+            float yTouchPosition;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // only display fisheye behaviour if it's a fisheye list
+                if (isSimpleList()) {
+                    return false;
+                }
+                yTouchPosition = event.getY();
+
+                int height = 0;
+                int childcount = getListView().getChildCount();
+                // reset all childs to default font-size
+                for (int i = 0; i < childcount; i++) {
+                    View child = getListView().getChildAt(i);
+                    ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMAL_FONTSIZE);
+                }
+                // set font-size for touched and surrounding
+                for (int i = 0; i < childcount; i++) {
+                    View child = getListView().getChildAt(i);
+                    int itemheight = child.getHeight();
+                    if (yTouchPosition >= height && yTouchPosition < height + itemheight) {
+                        // Log.d("onTouch", "pointer on view " +
+                        // child.toString());
+                        ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP,
+                                EXPANDED_FONTSIZE);
+                        int upperneighborid = i;
+                        int lowerneighborid = i;
+                        for (int step = 1; step < 3; step++) {
+                            upperneighborid -= 1;
+                            lowerneighborid += 1;
+                            if (upperneighborid >= 0) {
+                                ((TextView) getListView().getChildAt(upperneighborid)).setTextSize(
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                                - 1);
+                            }
+                            if (lowerneighborid < childcount) {
+                                ((TextView) getListView().getChildAt(lowerneighborid)).setTextSize(
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                                - 1);
+                            }
+                        }
+                        break;
+                    }
+                    height += itemheight;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -109,13 +173,13 @@ public class RSSNewsReader extends ListActivity {
             case R.id.menu_usesimple:
                 changeAndSaveListType(item, ID_SIMPLELIST);
 
-                // recreate, reload activity to use new list type
+                fillData();
 
                 return true;
             case R.id.menu_usefisheye:
                 changeAndSaveListType(item, ID_FISHEYELIST);
 
-                // recreate, reload activity to use new list type
+                fillData();
 
                 return true;
             case R.id.menu_usetree:
@@ -183,8 +247,33 @@ public class RSSNewsReader extends ListActivity {
         }
     }
 
+    /**
+     * Returns true if external storage is mounted with read/write access.
+     * 
+     * @return
+     */
     private boolean isExtStorageAvailable() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
+    /**
+     * Returns true if listtype is simple or treeview list, false if it is
+     * fisheye.
+     * 
+     * @return
+     */
+    private boolean isSimpleList() {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        int listtype = prefs.getInt(KEY_LISTTYPE, 0);
+        // also say it's a simple list if listtype is treeview, because
+        // simple/fisheye is shown as long as user has not selected treeview in
+        // the options
+        if (listtype != 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -272,12 +361,10 @@ public class RSSNewsReader extends ListActivity {
             try {
                 outStream = new FileOutputStream(file);
 
-                //write header for csv
-                measuretext = 
-                    DatabaseHelper.MEASUREMENT_ID + "," +
-                    DatabaseHelper.LIST_TYPE + "," +
-                    DatabaseHelper.MEASUREMENT_TIME +"\n";
-                
+                // write header for csv
+                measuretext = DatabaseHelper.MEASUREMENT_ID + "," + DatabaseHelper.LIST_TYPE + ","
+                        + DatabaseHelper.MEASUREMENT_TIME + "\n";
+
                 outStream.write(measuretext.getBytes());
 
                 while (!measurements.isAfterLast()) {
