@@ -66,7 +66,7 @@ public class RSSNewsReader extends ListActivity {
         // example of usage MeasurementModule
         MeasurementModule.initializeSession(getApplicationContext());
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -319,8 +319,11 @@ public class RSSNewsReader extends ListActivity {
                 outStream = new FileOutputStream(file);
 
                 // write header for csv
-                measuretext = DatabaseHelper.MEASUREMENT_ID + "," + DatabaseHelper.LIST_TYPE + ","
-                        + DatabaseHelper.MEASUREMENT_TIME + "\n";
+                measuretext =
+                    DatabaseHelper.MEASUREMENT_ID + ","
+                        + DatabaseHelper.LIST_TYPE + ","
+                        + DatabaseHelper.MEASUREMENT_ITEM + "," + DatabaseHelper.MEASUREMENT_TIME
+                        + "\n";
 
                 outStream.write(measuretext.getBytes());
 
@@ -330,6 +333,9 @@ public class RSSNewsReader extends ListActivity {
                             + ",";
                     measuretext += measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.LIST_TYPE))
+                            + ",";
+                    measuretext += measurements.getString(measurements
+                            .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_ITEM))
                             + ",";
                     measuretext += measurements.getString(measurements
                             .getColumnIndexOrThrow(DatabaseHelper.MEASUREMENT_TIME))
