@@ -72,8 +72,7 @@ public class PreferenceActivity extends ListActivity {
     
 
 	private OnClickListener saveButtonListener= new OnClickListener(){
-
-    	
+   	
 		@Override
 		public void onClick(View v) {
 			
