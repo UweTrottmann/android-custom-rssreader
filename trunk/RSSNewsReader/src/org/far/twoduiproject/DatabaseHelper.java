@@ -115,6 +115,11 @@ public class DatabaseHelper {
         db.update(PREFERENCE_TABLE, values, PREF_PROVIDERID + "=" + providerid + " AND "
                 + PREF_CATEGORY_ID + "=" + categoryid, null);
     }
+    
+    public void changeCategoryState(String enableQuery,String disableQuery){
+    	db.execSQL(enableQuery);
+    	db.execSQL(disableQuery);
+    }
 
     /**
      * Returns all rows in the preferences table as a Cursor.
@@ -124,7 +129,7 @@ public class DatabaseHelper {
     public Cursor getPreferences() {
         return db.query(PREFERENCE_TABLE, null, null, null, null, null, null);
     }
-
+    
     /**
      * Returns all preferences for one provider.
      * @param i
@@ -143,7 +148,11 @@ public class DatabaseHelper {
         return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
     }
 
-    /**
+    public String getPreferenceTable() {
+		return PREFERENCE_TABLE;
+	}
+
+	/**
      * Returns all news items for a specified category in a Cursor.
      * 
      * @param category_id
