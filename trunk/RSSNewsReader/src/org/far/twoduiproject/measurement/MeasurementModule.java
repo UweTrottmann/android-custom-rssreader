@@ -1,5 +1,7 @@
 package org.far.twoduiproject.measurement;
 
+import java.util.Calendar;
+
 import org.far.twoduiproject.DatabaseHelper;
 
 import android.content.ContentValues;
@@ -75,14 +77,14 @@ public class MeasurementModule {
 	 * the current Timer session.
 	 * 
 	 */
-	public static void stopMeasurement(){
+	public static void stopMeasurement(String clickedHeadline){
 		//we can only measure if a Timer was previously initialized
 		if(timer != null){
 			//stop timer
 			timer.stop();
 			
 			//do DB call
-			storeMeasurementDB();
+			storeMeasurementDB(clickedHeadline);
 		}
 		
 		destroySession();
@@ -104,9 +106,10 @@ public class MeasurementModule {
 	
 	/**
 	 * This method is in charge of storing the measurement for this session in the database.
+	 * @param clickedHeadline 
 	 * 
 	 */
-	private static void storeMeasurementDB(){
+	private static void storeMeasurementDB(String clickedHeadline){
 		//get measurement
 		long measurementTime = timer.getTotalTime();
 		long startTime = timer.getStartTime();
@@ -120,6 +123,7 @@ public class MeasurementModule {
 			values.put(DatabaseHelper.LIST_TYPE, listType);
 			values.put(DatabaseHelper.MEASUREMENT_TIME, measurementTime);
 			values.put(DatabaseHelper.MEASUREMENT_ID, startTime);
+			values.put(DatabaseHelper.MEASUREMENT_ITEM, clickedHeadline + " " + Calendar.getInstance().getTime().toString());
 			
 			dbHelper.beginTransaction();
 			try{

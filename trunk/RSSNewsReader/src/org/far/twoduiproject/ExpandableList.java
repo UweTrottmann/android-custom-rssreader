@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Demonstrates expandable lists backed by Cursors
@@ -56,8 +58,8 @@ public class ExpandableList extends ExpandableListActivity {
     public boolean onChildClick(ExpandableListView parent, View v,
     		int groupPosition, int childPosition, long id) {
     	//example of usage for MeasurementModule
-    	MeasurementModule.stopMeasurement();
-    	
+    	MeasurementModule.stopMeasurement(((TextView)v).getText().toString());
+    	Toast.makeText(getApplicationContext(), "Registered tap", Toast.LENGTH_SHORT).show();
     	return true;
     }
     

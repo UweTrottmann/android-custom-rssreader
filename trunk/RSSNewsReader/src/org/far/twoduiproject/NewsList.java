@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewsList extends ListActivity {
 
@@ -78,6 +80,7 @@ public class NewsList extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         // stop a running measurement
-        MeasurementModule.stopMeasurement();
+        MeasurementModule.stopMeasurement(((TextView)v).getText().toString());
+        Toast.makeText(getApplicationContext(), "Registered tap", Toast.LENGTH_SHORT).show();
     }
 }

@@ -11,7 +11,7 @@ import android.util.Log;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "rssdb";
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public static final String ITEM_TABLE = "items";
 
@@ -60,6 +60,8 @@ public class DatabaseHelper {
     public static final String MEASUREMENT_TIME = "measurement_time";
     
     public static final String LIST_TYPE = "list_type";
+
+    public static final String MEASUREMENT_ITEM = "measurement_item";
 
     private static DatabaseHelper _instance;
 
@@ -245,7 +247,8 @@ public class DatabaseHelper {
             db.execSQL("create table " + MEASUREMENT_TABLE 
             		+ " (" + MEASUREMENT_ID + " integer primary key,"
                     + LIST_TYPE + " text default ''," 
-                    + MEASUREMENT_TIME + " int default 0"
+                    + MEASUREMENT_TIME + " int default 0,"
+                    + MEASUREMENT_ITEM + " text default ''"
                     + ");");
 
             // insert inital dataset as specified in /assets/config.xml
