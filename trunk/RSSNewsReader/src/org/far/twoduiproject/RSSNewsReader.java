@@ -135,12 +135,18 @@ public class RSSNewsReader extends ListActivity {
                 return true;
             case R.id.menu_usesimple:
                 changeAndSaveListType(item, ID_SIMPLELIST);
+                
+             // start measuring
+                MeasurementModule.startMeasurement(MeasurementModule.SIMPLE_LIST);
 
                 fillData();
 
                 return true;
             case R.id.menu_usefisheye:
                 changeAndSaveListType(item, ID_FISHEYELIST);
+                
+             // start measuring
+                MeasurementModule.startMeasurement(MeasurementModule.FISHEYE_LIST);
 
                 fillData();
 
