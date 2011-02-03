@@ -10,6 +10,7 @@ import org.far.twoduiproject.measurement.MeasurementModule;
 import org.xml.sax.SAXException;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,7 @@ public class RSSNewsReader extends ListActivity {
 
     public static final String TAG = "RSSNewsReader";
 
-    private static final String KEY_LISTTYPE = "listtype";
+    static final String KEY_LISTTYPE = "listtype";
 
     private static final int ID_SIMPLELIST = 0;
 
@@ -80,73 +82,34 @@ public class RSSNewsReader extends ListActivity {
         };
 
         // and an array of the fields we want to bind those fields to
-        to = new int[] {
-            R.id.categoryname
-        };
-
-        layout = R.layout.categories_simple;
+        if (RSSNewsReader.isSimpleList(getApplicationContext())) {
+            to = new int[] {
+                R.id.categoryname
+            };
+            layout = R.layout.categories_simple;
+        } else {
+            to = new int[] {
+                R.id.fisheye_item
+            };
+            layout = R.layout.fisheye_row;
+        }
 
         // Now create a simple cursor adapter and set it to display
         SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(),
                 layout, categories, from, to);
 
-        setFishEyeListener();
+        setFishEyeListener(getListView(), getApplicationContext());
 
         setListAdapter(categoriesAdapter);
 
     }
 
-    private void setFishEyeListener() {
-        getListView().setOnTouchListener(new OnTouchListener() {
-            float yTouchPosition;
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // only display fisheye behaviour if it's a fisheye list
-                if (isSimpleList()) {
-                    return false;
-                }
-                yTouchPosition = event.getY();
-
-                int height = 0;
-                int childcount = getListView().getChildCount();
-                // reset all childs to default font-size
-                for (int i = 0; i < childcount; i++) {
-                    View child = getListView().getChildAt(i);
-                    ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMAL_FONTSIZE);
-                }
-                // set font-size for touched and surrounding
-                for (int i = 0; i < childcount; i++) {
-                    View child = getListView().getChildAt(i);
-                    int itemheight = child.getHeight();
-                    if (yTouchPosition >= height && yTouchPosition < height + itemheight) {
-                        // Log.d("onTouch", "pointer on view " +
-                        // child.toString());
-                        ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                                EXPANDED_FONTSIZE);
-                        int upperneighborid = i;
-                        int lowerneighborid = i;
-                        for (int step = 1; step < 3; step++) {
-                            upperneighborid -= 1;
-                            lowerneighborid += 1;
-                            if (upperneighborid >= 0) {
-                                ((TextView) getListView().getChildAt(upperneighborid)).setTextSize(
-                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
-                                                - 1);
-                            }
-                            if (lowerneighborid < childcount) {
-                                ((TextView) getListView().getChildAt(lowerneighborid)).setTextSize(
-                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
-                                                - 1);
-                            }
-                        }
-                        break;
-                    }
-                    height += itemheight;
-                }
-                return false;
-            }
-        });
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent i = new Intent(getApplicationContext(), NewsList.class);
+        i.putExtra(DatabaseHelper.CATEGORY_ID, id);
+        startActivity(i);
     }
 
     @Override
@@ -254,26 +217,6 @@ public class RSSNewsReader extends ListActivity {
      */
     private boolean isExtStorageAvailable() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-    }
-
-    /**
-     * Returns true if listtype is simple or treeview list, false if it is
-     * fisheye.
-     * 
-     * @return
-     */
-    private boolean isSimpleList() {
-        SharedPreferences prefs = PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext());
-        int listtype = prefs.getInt(KEY_LISTTYPE, 0);
-        // also say it's a simple list if listtype is treeview, because
-        // simple/fisheye is shown as long as user has not selected treeview in
-        // the options
-        if (listtype != 1) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -402,6 +345,80 @@ public class RSSNewsReader extends ListActivity {
                 Toast.makeText(getApplicationContext(), "Dump failed" + " - " + errorMsg,
                         Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    public static void setFishEyeListener(final ListView listview, final Context context) {
+        // TODO: put this in a parent class instead of using a static method
+        listview.setOnTouchListener(new OnTouchListener() {
+            float yTouchPosition;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // only display fisheye behaviour if it's a fisheye list
+                if (isSimpleList(context)) {
+                    return false;
+                }
+                yTouchPosition = event.getY();
+
+                int height = 0;
+                int childcount = listview.getChildCount();
+                // reset all childs to default font-size
+                for (int i = 0; i < childcount; i++) {
+                    View child = listview.getChildAt(i);
+                    ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP, NORMAL_FONTSIZE);
+                }
+                // set font-size for touched and surrounding
+                for (int i = 0; i < childcount; i++) {
+                    View child = listview.getChildAt(i);
+                    int itemheight = child.getHeight();
+                    if (yTouchPosition >= height && yTouchPosition < height + itemheight) {
+                        // Log.d("onTouch", "pointer on view " +
+                        // child.toString());
+                        ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP,
+                                EXPANDED_FONTSIZE);
+                        int upperneighborid = i;
+                        int lowerneighborid = i;
+                        for (int step = 1; step < 3; step++) {
+                            upperneighborid -= 1;
+                            lowerneighborid += 1;
+                            if (upperneighborid >= 0) {
+                                ((TextView) listview.getChildAt(upperneighborid)).setTextSize(
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                                - 1);
+                            }
+                            if (lowerneighborid < childcount) {
+                                ((TextView) listview.getChildAt(lowerneighborid)).setTextSize(
+                                        TypedValue.COMPLEX_UNIT_SP, EXPANDED_FONTSIZE - step * 4
+                                                - 1);
+                            }
+                        }
+                        break;
+                    }
+                    height += itemheight;
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     * Returns true if listtype is simple or treeview list, false if it is
+     * fisheye.
+     * 
+     * @return
+     */
+    public static boolean isSimpleList(Context context) {
+        // TODO: put this in a parent class instead of using a static method
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int listtype = prefs.getInt(KEY_LISTTYPE, 0);
+        // also say it's a simple list if listtype is treeview, because
+        // simple/fisheye is shown as long as user has not selected treeview in
+        // the options
+        if (listtype != 1) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

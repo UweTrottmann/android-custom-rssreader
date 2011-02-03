@@ -18,6 +18,7 @@
         <activity android:name="CnnActivity"></activity>
         <activity android:name="ExpandableList"></activity>
         <activity android:name="PreferenceActivity"></activity>
+        <activity android:name="NewsList"></activity>
 
     </application>
     <uses-sdk android:minSdkVersion="4" />
