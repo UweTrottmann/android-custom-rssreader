@@ -38,6 +38,7 @@ public class PreferenceActivity extends Activity {
         int providerid=0;
         
         SharedPreferences provider = getSharedPreferences(PROVIDER_PREF,Context.MODE_PRIVATE);
+        String categoryIds ="";
         
         //For CNN, provider id = 1, For BBC, provider id = 2 - if preference doesn't exist - always pick cnn as default
         if (provider.getString(NAME_PROVIDER_PREF,"cnn")=="cnn")
@@ -47,23 +48,21 @@ public class PreferenceActivity extends Activity {
         
         
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
+ 
         
+        String getCategoryQuery = "select preferences.pref_categoryid,categories.category_name,preferences.enabled from " + DatabaseHelper.PREFERENCE_TABLE + " inner join " + DatabaseHelper.CATEGORY_TABLE + " on "+DatabaseHelper.PREFERENCE_TABLE+"."+DatabaseHelper.PREF_CATEGORY_ID + "="+DatabaseHelper.CATEGORY_TABLE+"."+DatabaseHelper.CATEGORY_ID+" where preferences.Enabled = 1 and "+DatabaseHelper.PREF_PROVIDERID+" = " + providerid + ";";
+        
+        
+        Cursor preferenceCategory = mDbHelper.getCategories(getCategoryQuery);
+        
+        while(preferenceCategory.moveToNext()){
+        	categoryNameList.add(preferenceCategory.getString(1));
+        	categoryList.add(new Category(preferenceCategory.getInt(0),preferenceCategory.getString(1),preferenceCategory.getInt(2)));
 
-        
-        
-        
-        
-        mDbHelper.getPreferencesWithProviderId(providerid);
-        Cursor preferenceCursor = mDbHelper.getPreferencesWithProviderId(providerid);
-
-        
-        
-        while(preferenceCursor.moveToNext()){
-        	categoryNameList.add(preferenceCursor.getString(1));
-        	categoryList.add(new Category(preferenceCursor.getInt(2),preferenceCursor.getString(3),preferenceCursor.getInt(4)));
         }
-       
-        //setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,categoryNameList));
+        
+
+        
         final ListView preferenceListView = (ListView)findViewById(R.id.prefList);
         preferenceListView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,categoryNameList));
         preferenceListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
