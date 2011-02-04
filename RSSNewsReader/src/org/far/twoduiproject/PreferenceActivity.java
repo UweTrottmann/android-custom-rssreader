@@ -3,6 +3,7 @@ package org.far.twoduiproject;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,7 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class PreferenceActivity extends ListActivity {
+public class PreferenceActivity extends Activity {
     /** Called when the activity is first created. */
 	
 	public static final String PROVIDER_PREF="providerpref";
@@ -62,8 +63,9 @@ public class PreferenceActivity extends ListActivity {
         	categoryList.add(new Category(preferenceCursor.getInt(2),preferenceCursor.getString(3),preferenceCursor.getInt(4)));
         }
        
-        setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,categoryNameList));
-        final ListView preferenceListView = getListView();
+        //setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,categoryNameList));
+        final ListView preferenceListView = (ListView)findViewById(R.id.prefList);
+        preferenceListView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,categoryNameList));
         preferenceListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         preferenceListView.setOnItemClickListener(preferenceListViewListener);
         
@@ -82,7 +84,7 @@ public class PreferenceActivity extends ListActivity {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			// TODO Auto-generated method stub
+
 			Button saveButton = (Button)findViewById(R.id.save);
 			saveButton.setEnabled(true);
 			
