@@ -103,8 +103,10 @@ public class PreferenceActivity extends Activity {
 			String updateQueryEnabled = "";
 			String updateQueryDisabled ="";
 			String enabledIds = "";
-			String disabledIds = "";
+			String disabledIds = "" ;
 			ListView preferenceListView = (ListView)v.getTag();
+			
+			
 			//call update method to update the isEnabled flag of the table for each category
 			
 			SparseBooleanArray checked = preferenceListView.getCheckedItemPositions();
@@ -112,24 +114,30 @@ public class PreferenceActivity extends Activity {
 			for (int i =0; i<categoryList.size();i++){
 				if (checked.get(i)){
 					categoryList.get(i).setEnabled(1);
-					enabledIds.concat(String.valueOf(i));
-					enabledIds.concat(",");
+					enabledIds = enabledIds + String.valueOf(categoryList.get(i).getCategoryId());
+					enabledIds = enabledIds + ",";
+					
 				}
 				else{
 					categoryList.get(i).setEnabled(0);
-					disabledIds.concat(String.valueOf(i));
-					disabledIds.concat(",");
+					
+					disabledIds = disabledIds + String.valueOf(categoryList.get(i).getCategoryId());
+					disabledIds = disabledIds + ",";
+					
 				}
 			}
 			
 
 			
-			enabledIds = enabledIds.substring(1, enabledIds.length()-1);
-			disabledIds = disabledIds.substring(1,disabledIds.length()-1);
+			//enabledIds = enabledIds.substring(0, enabledIds.length()-1);
+			//disabledIds = disabledIds.substring(0,disabledIds.length()-1);
+			
+			enabledIds = enabledIds.substring(0, enabledIds.length()-1);
+			disabledIds = disabledIds.substring(0, disabledIds.length()-1);
 			
 			
-			updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 1 where pref_category_id in (" + enabledIds + ")" ;
-			updateQueryDisabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 0 where pref_category_id in (" + disabledIds + ")";
+			updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 1 where pref_categoryid in (" + enabledIds + ");" ;
+			updateQueryDisabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 0 where pref_categoryid in (" + disabledIds + ");";
 			
 			mDbHelper.changeCategoryState(updateQueryEnabled, updateQueryDisabled);
 
