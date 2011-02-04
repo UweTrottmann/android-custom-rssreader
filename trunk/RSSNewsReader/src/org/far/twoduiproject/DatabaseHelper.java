@@ -1,6 +1,8 @@
 
 package org.far.twoduiproject;
 
+import java.io.IOException;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -122,6 +124,8 @@ public class DatabaseHelper {
     	db.execSQL(enableQuery);
     	db.execSQL(disableQuery);
     }
+    
+
 
     /**
      * Returns all rows in the preferences table as a Cursor.
@@ -149,6 +153,12 @@ public class DatabaseHelper {
     public Cursor getCategories() {
         return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
     }
+    
+    public Cursor getCategories(String query){
+    	return db.rawQuery(query,null);
+    	
+    }
+    
 
 
 
