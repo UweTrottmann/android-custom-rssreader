@@ -50,7 +50,11 @@ public class PreferenceActivity extends Activity {
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
  
         
-        String getCategoryQuery = "select preferences.pref_categoryid,categories.category_name,preferences.enabled from " + DatabaseHelper.PREFERENCE_TABLE + " inner join " + DatabaseHelper.CATEGORY_TABLE + " on "+DatabaseHelper.PREFERENCE_TABLE+"."+DatabaseHelper.PREF_CATEGORY_ID + "="+DatabaseHelper.CATEGORY_TABLE+"."+DatabaseHelper.CATEGORY_ID+" where preferences.Enabled = 1 and "+DatabaseHelper.PREF_PROVIDERID+" = " + providerid + ";";
+        String getCategoryQuery = "select preferences.pref_categoryid,categories.name,preferences.enabled from " + DatabaseHelper.PREFERENCE_TABLE + " inner join " + DatabaseHelper.CATEGORY_TABLE + " on "+DatabaseHelper.PREFERENCE_TABLE+"."+DatabaseHelper.PREF_CATEGORY_ID + "="+DatabaseHelper.CATEGORY_TABLE+"."+DatabaseHelper.CATEGORY_ID+" where preferences.Enabled = 1 and "+DatabaseHelper.PREF_PROVIDERID+" = " + providerid + ";";
+        
+        //String getCategoryQuery = "select pref_categoryid,"
+        
+       //String getCategoryQuery ="select pref_categoryid,feedpath,enabled from preferences;";
         
         
         Cursor preferenceCategory = mDbHelper.getCategories(getCategoryQuery);
@@ -58,7 +62,6 @@ public class PreferenceActivity extends Activity {
         while(preferenceCategory.moveToNext()){
         	categoryNameList.add(preferenceCategory.getString(1));
         	categoryList.add(new Category(preferenceCategory.getInt(0),preferenceCategory.getString(1),preferenceCategory.getInt(2)));
-
         }
         
 
