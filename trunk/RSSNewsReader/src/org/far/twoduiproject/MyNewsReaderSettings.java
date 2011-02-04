@@ -17,7 +17,8 @@ import android.widget.ImageView;
 public class MyNewsReaderSettings extends Activity {
     /** Called when the activity is first created. */
 	
-	public static final String PROVIDER_SELECTION="";
+	public static final String PROVIDER_PREF="providerpref";
+	public static final String NAME_PROVIDER_PREF = "providerprefname";
 	SharedPreferences provider;
 	
     @Override
@@ -25,7 +26,7 @@ public class MyNewsReaderSettings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         
-        provider = getSharedPreferences(PROVIDER_SELECTION,Context.MODE_PRIVATE);
+        provider = getSharedPreferences(PROVIDER_PREF,Context.MODE_PRIVATE);
         ImageView cnnlogo = (ImageView)findViewById(R.id.cnn);
         ImageView bbclogo = (ImageView)findViewById(R.id.bbc);
         
@@ -37,7 +38,7 @@ public class MyNewsReaderSettings extends Activity {
 			public void onClick(View v) {
 				
 				Editor editor = provider.edit();
-				editor.putString(PROVIDER_SELECTION,"cnn");
+				editor.putString(NAME_PROVIDER_PREF,"cnn");
 				editor.commit();
 				
 				startActivity(new Intent(MyNewsReaderSettings.this, PreferenceActivity.class ));
@@ -52,7 +53,7 @@ public class MyNewsReaderSettings extends Activity {
 			public void onClick(View v) {
 
 				Editor editor = provider.edit();
-				editor.putString(PROVIDER_SELECTION, "bbc");
+				editor.putString(NAME_PROVIDER_PREF, "bbc");
 				editor.commit();
 				startActivity(new Intent(MyNewsReaderSettings.this,PreferenceActivity.class));
 				
