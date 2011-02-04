@@ -4,6 +4,8 @@ package org.far.twoduiproject;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -18,6 +20,10 @@ import android.widget.AdapterView.OnItemClickListener;
 public class PreferenceActivity extends ListActivity {
     /** Called when the activity is first created. */
 	
+	public static final String PROVIDER_PREF="providerpref";
+	public static final String NAME_PROVIDER_PREF = "providerprefname";
+
+	
 	private DatabaseHelper mDbHelper = DatabaseHelper.getInstance(this);
 	
 
@@ -28,12 +34,26 @@ public class PreferenceActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preference);
+        int providerid=0;
+        
+        SharedPreferences provider = getSharedPreferences(PROVIDER_PREF,Context.MODE_PRIVATE);
+        
+        //For CNN, provider id = 1, For BBC, provider id = 2 - if preference doesn't exist - always pick cnn as default
+        if (provider.getString(NAME_PROVIDER_PREF,"cnn")=="cnn")
+        	providerid=1;
+        else
+        	providerid=2;
+        
         
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
         
-        //For CNN, provider id = 1, For BBC, provider id = 2
-        mDbHelper.getPreferencesWithProviderId(1);
-        Cursor preferenceCursor = mDbHelper.getPreferencesWithProviderId(1);
+
+        
+        
+        
+        
+        mDbHelper.getPreferencesWithProviderId(providerid);
+        Cursor preferenceCursor = mDbHelper.getPreferencesWithProviderId(providerid);
 
         
         
