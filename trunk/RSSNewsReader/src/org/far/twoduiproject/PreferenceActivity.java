@@ -38,7 +38,7 @@ public class PreferenceActivity extends Activity {
         int providerid=0;
         
         SharedPreferences provider = getSharedPreferences(PROVIDER_PREF,Context.MODE_PRIVATE);
-        String categoryIds ="";
+
         
         //For CNN, provider id = 1, For BBC, provider id = 2 - if preference doesn't exist - always pick cnn as default
         if (provider.getString(NAME_PROVIDER_PREF,"cnn")=="cnn")
@@ -115,15 +115,17 @@ public class PreferenceActivity extends Activity {
 					enabledIds.concat(String.valueOf(i));
 					enabledIds.concat(",");
 				}
-				else
+				else{
 					categoryList.get(i).setEnabled(0);
 					disabledIds.concat(String.valueOf(i));
 					disabledIds.concat(",");
+				}
 			}
 			
 
-			enabledIds = enabledIds.substring(0, enabledIds.length()-1);
-			disabledIds = disabledIds.substring(0,disabledIds.length()-1);
+			
+			enabledIds = enabledIds.substring(1, enabledIds.length()-1);
+			disabledIds = disabledIds.substring(1,disabledIds.length()-1);
 			
 			
 			updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE + " set enabled = 1 where pref_category_id in (" + enabledIds + ")" ;
