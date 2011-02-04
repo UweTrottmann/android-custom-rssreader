@@ -7,12 +7,12 @@
     
 <RelativeLayout android:layout_marginBottom="@dimen/title_bottom_margin" android:id="@+id/RelativeLayout01" android:layout_width="wrap_content" android:layout_height="wrap_content">
 <ImageView android:id="@+id/ImageView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
-<TextView android:text="@string/preference" android:id="@+id/Preferences" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/preference" android:id="@+id/Preferences" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true"></TextView>
 <ImageView android:id="@+id/ImageView02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentTop="true" android:src="@drawable/smallrssicon"></ImageView>
 </RelativeLayout>    
 
 
-<CheckedTextView android:text="@+id/CheckedTextView01" android:id="@+id/PreferenceCheckBox" android:layout_width="fill_parent" android:layout_height="wrap_content"></CheckedTextView>
-
+<ListView android:id="@+id/prefList" android:layout_width="fill_parent" android:layout_height="wrap_content"></ListView>
 <Button android:text="@+id/Button01" android:id="@+id/save" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
 </LinearLayout>
