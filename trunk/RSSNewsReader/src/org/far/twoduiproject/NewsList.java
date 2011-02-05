@@ -42,27 +42,25 @@ public class NewsList extends ListActivity {
         int[] to;
         int layout;
 
-        // Create an array to specify the fields we want to display in the
-        // list
-        from = new String[] {
-            DatabaseHelper.TITLE
-        };
-
-        // and an array of the fields we want to bind those fields to
         boolean isSimpleList = RSSNewsReader.isSimpleList(getApplicationContext());
         if (isSimpleList) {
-            to = new int[] {
-                R.id.categoryname
+            from = new String[] {
+                    DatabaseHelper.TITLE, DatabaseHelper.PUBDATE
             };
-            layout = R.layout.categories_simple;
+            to = new int[] {
+                    R.id.textViewSimpleListRowTitle, R.id.textViewSimpleListRowDate
+            };
+            layout = R.layout.simplelist_row;
         } else {
+            from = new String[] {
+                DatabaseHelper.TITLE
+            };
             to = new int[] {
                 R.id.fisheye_item
             };
             layout = R.layout.fisheye_row;
         }
 
-        // Now create a simple cursor adapter and set it to display
         SimpleCursorAdapter categoriesAdapter = new SimpleCursorAdapter(getApplicationContext(),
                 layout, newsitems, from, to);
 

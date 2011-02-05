@@ -39,17 +39,15 @@ public class ExpandableList extends ExpandableListActivity {
 
         // Set up our adapter
         mAdapter = new MyExpandableListAdapter(groupCursor, this,
-                android.R.layout.simple_expandable_list_item_1,
-                android.R.layout.simple_expandable_list_item_1, new String[] {
+                android.R.layout.simple_expandable_list_item_1, R.layout.simplelist_row,
+                new String[] {
                     DatabaseHelper.CATEGORY_NAME
-                }, // Category name for group layouts
-                new int[] {
+                }, new int[] {
                     android.R.id.text1
                 }, new String[] {
-                    DatabaseHelper.TITLE
-                }, // News title for child layouts
-                new int[] {
-                    android.R.id.text1
+                    DatabaseHelper.TITLE, DatabaseHelper.PUBDATE
+                }, new int[] {
+                    R.id.textViewSimpleListRowTitle, R.id.textViewSimpleListRowDate
                 });
         setListAdapter(mAdapter);
     }
@@ -57,9 +55,10 @@ public class ExpandableList extends ExpandableListActivity {
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
             int childPosition, long id) {
-//        // stop measurement
-//        MeasurementModule.stopMeasurement(((TextView) v).getText().toString());
-        
+        // // stop measurement
+        // MeasurementModule.stopMeasurement(((TextView)
+        // v).getText().toString());
+
         // open article in browser
         Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDbHelper.getItemLink(id)));
         startActivity(myIntent);
