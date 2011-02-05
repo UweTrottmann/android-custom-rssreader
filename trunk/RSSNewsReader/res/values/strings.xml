@@ -29,7 +29,7 @@
     <string name="cnn_Technology_Link">http://rss.cnn.com/rss/edition_technology.rss</string>
     <string name="show_treeview">Show TreeView</string>
     <string name="dumpmeasurements">Dump measurements</string>
-    <string name="change_listtype">Select view</string>
+    <string name="change_listtype">Switch view</string>
     <string name="simplelist">Simple</string>
     <string name="fisheye">FishEye</string>
     <string name="treelist">Tree</string>
