@@ -529,4 +529,5 @@ public class RSSNewsReader extends ListActivity {
             mUpdateTask = (UpdateTask) new UpdateTask().execute();
         }
     }
+    
 }

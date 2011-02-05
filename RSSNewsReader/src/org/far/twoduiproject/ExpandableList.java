@@ -1,18 +1,16 @@
 
 package org.far.twoduiproject;
 
-import org.far.twoduiproject.measurement.MeasurementModule;
-
 import android.app.ExpandableListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.TextView;
+import android.widget.SimpleCursorTreeAdapter.ViewBinder;
 
 /**
  * Demonstrates expandable lists backed by Cursors
@@ -20,9 +18,9 @@ import android.widget.SimpleCursorTreeAdapter;
 public class ExpandableList extends ExpandableListActivity {
     private int mGroupIdColumnIndex;
 
-    private ExpandableListAdapter mAdapter;
-
     private DatabaseHelper mDbHelper;
+
+    private SimpleCursorTreeAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,17 +36,45 @@ public class ExpandableList extends ExpandableListActivity {
         mGroupIdColumnIndex = groupCursor.getColumnIndexOrThrow(DatabaseHelper.CATEGORY_ID);
 
         // Set up our adapter
-        mAdapter = new MyExpandableListAdapter(groupCursor, this,
-                android.R.layout.simple_expandable_list_item_1, R.layout.simplelist_row,
-                new String[] {
+        mAdapter = new SimpleCursorTreeAdapter(getApplicationContext(), groupCursor,
+                android.R.layout.simple_expandable_list_item_1, new String[] {
                     DatabaseHelper.CATEGORY_NAME
                 }, new int[] {
                     android.R.id.text1
-                }, new String[] {
-                    DatabaseHelper.TITLE, DatabaseHelper.PUBDATE
+                }, R.layout.simplelist_row, new String[] {
+                        DatabaseHelper.TITLE, DatabaseHelper.PUBDATE
                 }, new int[] {
-                    R.id.textViewSimpleListRowTitle, R.id.textViewSimpleListRowDate
-                });
+                        R.id.textViewSimpleListRowTitle, R.id.textViewSimpleListRowDate
+                }) {
+
+            @Override
+            protected Cursor getChildrenCursor(Cursor groupCursor) {
+                // Given the group, we return a cursor for all the children
+                // within that group
+                Cursor newsitems = mDbHelper.getItemsForCategory(groupCursor
+                        .getInt(mGroupIdColumnIndex));
+
+                // The returned Cursor MUST be managed by us, so we use
+                // Activity's helper functionality to manage it for us.
+                startManagingCursor(newsitems);
+                return newsitems;
+            }
+        };
+
+        // Set a ViewBinder to parse the time to a relative format
+        mAdapter.setViewBinder(new ViewBinder() {
+
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                if (columnIndex == cursor.getColumnIndex(DatabaseHelper.PUBDATE)) {
+                    TextView v = (TextView) view;
+                    v.setText(NewsList.parseDateToLocalRelative(cursor.getLong(cursor
+                            .getColumnIndexOrThrow(DatabaseHelper.PUBDATE))));
+                    return true;
+                }
+                return false;
+            }
+        });
         setListAdapter(mAdapter);
     }
 
@@ -67,34 +93,7 @@ public class ExpandableList extends ExpandableListActivity {
 
     @Override
     protected void onStop() {
-
-        MeasurementModule.destroySession();
-
         super.onStop();
-    }
-
-    public class MyExpandableListAdapter extends SimpleCursorTreeAdapter {
-
-        public MyExpandableListAdapter(Cursor cursor, Context context, int groupLayout,
-                int childLayout, String[] groupFrom, int[] groupTo, String[] childrenFrom,
-                int[] childrenTo) {
-            super(context, cursor, groupLayout, groupFrom, groupTo, childLayout, childrenFrom,
-                    childrenTo);
-        }
-
-        @Override
-        protected Cursor getChildrenCursor(Cursor groupCursor) {
-            // Given the group, we return a cursor for all the children within
-            // that group
-            Cursor newsitems = mDbHelper.getItemsForCategory(groupCursor
-                    .getInt(mGroupIdColumnIndex));
-
-            // The returned Cursor MUST be managed by us, so we use Activity's
-            // helper
-            // functionality to manage it for us.
-            startManagingCursor(newsitems);
-            return newsitems;
-        }
-
+        // MeasurementModule.destroySession();
     }
 }
