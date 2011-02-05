@@ -1,16 +1,14 @@
 
 package org.far.twoduiproject;
 
-import org.far.twoduiproject.measurement.MeasurementModule;
-
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class NewsList extends ListActivity {
 
@@ -27,9 +25,9 @@ public class NewsList extends ListActivity {
         long categoryid = extras != null ? extras.getLong(DatabaseHelper.CATEGORY_ID) : null;
 
         fillData(categoryid);
-        
+
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -79,8 +77,11 @@ public class NewsList extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        // stop a running measurement
-        MeasurementModule.stopMeasurement(((TextView)v).getText().toString());
-        Toast.makeText(getApplicationContext(), "Registered tap", Toast.LENGTH_SHORT).show();
+        // // stop a running measurement
+        // MeasurementModule.stopMeasurement(((TextView)v).getText().toString());
+
+        // open article in browser
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDbHelper.getItemLink(id)));
+        startActivity(myIntent);
     }
 }

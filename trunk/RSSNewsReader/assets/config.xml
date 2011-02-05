@@ -23,17 +23,17 @@
 			<pid>0</pid>
 			<pcategory>
 				<id>0</id>
-				<path>bbc_business_atom2.xml</path>
+				<path>http://feeds.bbci.co.uk/news/business/rss.xml</path>
 				<encoding>UTF_8</encoding>
 			</pcategory>
 			<pcategory>
 				<id>1</id>
-				<path>bbc_politics_atom2.xml</path>
+				<path>http://feeds.bbci.co.uk/news/politics/rss.xml</path>
 				<encoding>UTF_8</encoding>
 			</pcategory>
 			<pcategory>
 				<id>3</id>
-				<path>bbc_technology_atom2.xml</path>
+				<path>http://feeds.bbci.co.uk/news/technology/rss.xml</path>
 				<encoding>UTF_8</encoding>
 			</pcategory>
 		</provider>
@@ -42,17 +42,17 @@
 			<pid>1</pid>
 			<pcategory>
 				<id>0</id>
-				<path>cnn_business.xml</path>
+				<path>http://rss.cnn.com/rss/edition_business.rss</path>
 				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 			<pcategory>
 				<id>2</id>
-				<path>cnn_sports.xml</path>
+				<path>http://rss.cnn.com/rss/edition_sport.rss</path>
 				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 			<pcategory>
 				<id>3</id>
-				<path>cnn_technology.xml</path>
+				<path>http://rss.cnn.com/rss/edition_technology.rss</path>
 				<encoding>ISO_8859_1</encoding>
 			</pcategory>
 		</provider>
