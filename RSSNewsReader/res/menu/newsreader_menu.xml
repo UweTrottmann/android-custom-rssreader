@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/preferences" android:icon="@drawable/ic_menu_preferences" android:id="@+id/menu_preferences"/>
     <item android:icon="@drawable/ic_menu_refresh" android:id="@+id/menu_update" android:title="@string/update"></item>
     <!-- <item android:title="@string/dumpmeasurements" android:id="@+id/menu_dumpmeasurements" android:icon="@drawable/ic_menu_archive"></item> -->  
     <item android:id="@+id/menu_changelist" android:title="@string/change_listtype" android:icon="@drawable/equalizer">
@@ -13,4 +12,5 @@
 		    </group>
 	    </menu>
     </item>
+    <item android:title="@string/preferences" android:icon="@drawable/ic_menu_preferences" android:id="@+id/menu_preferences"/>
 </menu>
