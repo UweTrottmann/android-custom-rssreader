@@ -9,6 +9,9 @@
     <TextView
     android:text="Important News headline"
     android:layout_width="fill_parent"
-    android:id="@+id/textViewSimpleListRowTitle" android:textStyle="bold" android:textColor="#fff" android:layout_height="wrap_content"></TextView>
-    <TextView android:text="3 hours ago" android:layout_width="fill_parent" android:id="@+id/textViewSimpleListRowDate" android:layout_height="wrap_content"></TextView>
+    android:id="@+id/textViewSimpleListRowTitle" 
+    android:textSize="16sp"
+    android:textStyle="bold" android:textColor="#fff" android:layout_height="wrap_content"></TextView>
+    <TextView android:text="3 hours ago" android:layout_width="fill_parent" android:id="@+id/textViewSimpleListRowDate" android:layout_height="wrap_content"
+    android:textSize="16sp"></TextView>
 </LinearLayout>
