@@ -1,8 +1,6 @@
 
 package org.far.twoduiproject;
 
-import java.io.IOException;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,7 +11,7 @@ import android.util.Log;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "rssdb";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     public static final String ITEM_TABLE = "items";
 
@@ -22,7 +20,7 @@ public class DatabaseHelper {
     public static final String PREFERENCE_TABLE = "preferences";
 
     public static final String PROVIDER_TABLE = "providers";
-    
+
     public static final String MEASUREMENT_TABLE = "measurements";
 
     public static final String ITEM_ID = "_id";
@@ -56,11 +54,11 @@ public class DatabaseHelper {
     public static final String PREF_CATEGORY_ID = "pref_categoryid";
 
     protected static final String PREF_ENCODING = "pref_encoding";
-    
+
     public static final String MEASUREMENT_ID = "measurement_id";
-    
+
     public static final String MEASUREMENT_TIME = "measurement_time";
-    
+
     public static final String LIST_TYPE = "list_type";
 
     public static final String MEASUREMENT_ITEM = "measurement_item";
@@ -101,9 +99,23 @@ public class DatabaseHelper {
         itemvalues.put(ITEM_CATEGORY, categoryid);
         db.insert(ITEM_TABLE, null, itemvalues);
     }
-    
-    public void addMeasurement(ContentValues measurementValues){
-    	db.insert(MEASUREMENT_TABLE, null, measurementValues);
+
+    /**
+     * Returns the link of a given item as string.
+     * 
+     * @param id
+     * @return
+     */
+    public String getItemLink(long id) {
+        Cursor item = db.query(ITEM_TABLE, null, ITEM_ID + "=" + id, null, null, null, null);
+        item.moveToFirst();
+        String link = item.getString(item.getColumnIndexOrThrow(LINK));
+        item.close();
+        return link;
+    }
+
+    public void addMeasurement(ContentValues measurementValues) {
+        db.insert(MEASUREMENT_TABLE, null, measurementValues);
     }
 
     /**
@@ -119,13 +131,11 @@ public class DatabaseHelper {
         db.update(PREFERENCE_TABLE, values, PREF_PROVIDERID + "=" + providerid + " AND "
                 + PREF_CATEGORY_ID + "=" + categoryid, null);
     }
-    
-    public void changeCategoryState(String enableQuery,String disableQuery){
-    	db.execSQL(enableQuery);
-    	db.execSQL(disableQuery);
-    }
-    
 
+    public void changeCategoryState(String enableQuery, String disableQuery) {
+        db.execSQL(enableQuery);
+        db.execSQL(disableQuery);
+    }
 
     /**
      * Returns all rows in the preferences table as a Cursor.
@@ -135,14 +145,16 @@ public class DatabaseHelper {
     public Cursor getPreferences() {
         return db.query(PREFERENCE_TABLE, null, null, null, null, null, null);
     }
-    
+
     /**
      * Returns all preferences for one provider.
+     * 
      * @param i
      * @return Cursor with rows with given provider id
      */
     public Cursor getPreferencesWithProviderId(int providerid) {
-    	return db.query(PREFERENCE_TABLE, null, PREF_PROVIDERID + "=" + providerid, null, null, null, null);
+        return db.query(PREFERENCE_TABLE, null, PREF_PROVIDERID + "=" + providerid, null, null,
+                null, null);
     }
 
     /**
@@ -153,40 +165,38 @@ public class DatabaseHelper {
     public Cursor getCategories() {
         return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
     }
-    
-    public Cursor getCategories(String query){
-    	return db.rawQuery(query,null);
-    	
+
+    public Cursor getCategories(String query) {
+        return db.rawQuery(query, null);
+
     }
-    
 
-
-
-	/**
-     * Returns all news items for a specified category in a Cursor.
+    /**
+     * Returns the 10 most recent news items for a specified category in a
+     * Cursor.
      * 
      * @param category_id
      * @return Cursor containing the news items
      */
     public Cursor getItemsForCategory(int category_id) {
         return db.query(ITEM_TABLE, null, ITEM_CATEGORY + "=" + category_id, null, null, null,
-                PUBDATE + " desc");
+                PUBDATE + " desc", "10");
     }
-    
-    public Cursor getEnabledCategoryId(int provider_id){
-    
-    	return db.query(PREFERENCE_TABLE, new String[] {PREF_CATEGORY_ID},ENABLED + " = 1 and " + PREF_PROVIDERID + " = " + String.valueOf(provider_id), 
-    			null, null, null, null);
+
+    public Cursor getEnabledCategoryId(int provider_id) {
+
+        return db.query(PREFERENCE_TABLE, new String[] {
+            PREF_CATEGORY_ID
+        }, ENABLED + " = 1 and " + PREF_PROVIDERID + " = " + String.valueOf(provider_id), null,
+                null, null, null);
     }
-    
-    
-    
-    
+
     /**
      * Returns the measurement table as a Cursor.
+     * 
      * @return
      */
-    public Cursor getMeasurements(){
+    public Cursor getMeasurements() {
         return db.query(MEASUREMENT_TABLE, null, null, null, null, null, null);
     }
 
@@ -216,10 +226,12 @@ public class DatabaseHelper {
 
     private class OpenHelper extends SQLiteOpenHelper {
 
-        private static final String CREATE_ITEM_TABLE = "create table " + ITEM_TABLE + " (" + ITEM_ID + " int primary key," + TITLE
-                            + " text," + LINK + " text default ''," + DESCRIPTION + " text default '',"
-                            + PUBDATE + " text default ''," + ITEM_CATEGORY + " int references "
-                            + CATEGORY_TABLE + "(" + CATEGORY_ID + ")" + ");";
+        private static final String CREATE_ITEM_TABLE = "create table " + ITEM_TABLE + " ("
+                + ITEM_ID + " integer primary key autoincrement," + TITLE + " text," + LINK
+                + " text default ''," + DESCRIPTION + " text default ''," + PUBDATE
+                + " text default ''," + ITEM_CATEGORY + " integer references " + CATEGORY_TABLE
+                + "(" + CATEGORY_ID + ")" + ");";
+
         private Context mContext;
 
         private OpenHelper(Context context) {
@@ -235,7 +247,7 @@ public class DatabaseHelper {
             db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
-            db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); //FH
+            db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); // FH
             db.setVersion(DATABASE_VERSION);
             onCreate(db);
         }
@@ -244,24 +256,20 @@ public class DatabaseHelper {
         public void onCreate(SQLiteDatabase db) {
             // create database schema
             db.execSQL(CREATE_ITEM_TABLE);
-            db.execSQL("create table " + CATEGORY_TABLE + " (" + CATEGORY_ID + " int primary key,"
-                    + CATEGORY_NAME + " text default ''" + ");");
+            db.execSQL("create table " + CATEGORY_TABLE + " (" + CATEGORY_ID
+                    + " integer primary key," + CATEGORY_NAME + " text default ''" + ");");
             db.execSQL("create table " + PREFERENCE_TABLE + " (" + PREF_PROVIDERID
-                    + " int references " + PROVIDER_TABLE + "(" + PROVIDER_ID + "),"
-                    + PREF_CATEGORY_ID + " int references " + CATEGORY_TABLE + "(" + CATEGORY_ID
-                    + ")," + FEEDPATH + " text default ''," + ENABLED + " int default 1,"
-                    + PREF_ENCODING + " text default 'UTF_8'"
-                    + ");");
-            db.execSQL("create table " + PROVIDER_TABLE + " (" + PROVIDER_ID + " int primary key,"
-                    + PROVIDER_NAME + " text default ''" + ");");
-            
-            //FH:
-            db.execSQL("create table " + MEASUREMENT_TABLE 
-            		+ " (" + MEASUREMENT_ID + " integer primary key,"
-                    + LIST_TYPE + " text default ''," 
-                    + MEASUREMENT_TIME + " int default 0,"
-                    + MEASUREMENT_ITEM + " text default ''"
-                    + ");");
+                    + " integer references " + PROVIDER_TABLE + "(" + PROVIDER_ID + "),"
+                    + PREF_CATEGORY_ID + " integer references " + CATEGORY_TABLE + "("
+                    + CATEGORY_ID + ")," + FEEDPATH + " text default ''," + ENABLED
+                    + " integer default 1," + PREF_ENCODING + " text default 'UTF_8'" + ");");
+            db.execSQL("create table " + PROVIDER_TABLE + " (" + PROVIDER_ID
+                    + " integer primary key," + PROVIDER_NAME + " text default ''" + ");");
+
+            // FH:
+            db.execSQL("create table " + MEASUREMENT_TABLE + " (" + MEASUREMENT_ID
+                    + " integer primary key," + LIST_TYPE + " text default ''," + MEASUREMENT_TIME
+                    + " int default 0," + MEASUREMENT_ITEM + " text default ''" + ");");
 
             // insert inital dataset as specified in /assets/config.xml
             FeedParser.parseInitialSetup(db, mContext);
@@ -277,7 +285,7 @@ public class DatabaseHelper {
                 db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
                 db.execSQL("DROP TABLE IF EXISTS " + PREFERENCE_TABLE);
                 db.execSQL("DROP TABLE IF EXISTS " + PROVIDER_TABLE);
-                db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); //FH 
+                db.execSQL("DROP TABLE IF EXISTS " + MEASUREMENT_TABLE); // FH
                 db.setVersion(DATABASE_VERSION);
                 onCreate(db);
                 return;

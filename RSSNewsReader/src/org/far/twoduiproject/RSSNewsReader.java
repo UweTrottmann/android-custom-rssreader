@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
-import org.far.twoduiproject.measurement.MeasurementModule;
 import org.xml.sax.SAXException;
 
+import android.app.Dialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnTouchListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -49,12 +53,19 @@ public class RSSNewsReader extends ListActivity {
 
     protected static final float NORMAL_FONTSIZE = 8;
 
+    public static final int DIALOG_UPDATEFEEDS = 0;
+
+    private static final String STATE_UPDATE_IN_PROGRESS = "updateinprogress";
+
     private DatabaseHelper mDbHelper;
+
+    private UpdateTask mUpdateTask;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);
 
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
@@ -63,14 +74,20 @@ public class RSSNewsReader extends ListActivity {
 
         fillData();
 
-        // example of usage MeasurementModule
-        MeasurementModule.initializeSession(getApplicationContext());
+        // // example of usage MeasurementModule
+        // MeasurementModule.initializeSession(getApplicationContext());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         ((CustomListView) getListView()).setFirstRun();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        onCancelUpdate();
     }
 
     private void fillData() {
@@ -132,49 +149,38 @@ public class RSSNewsReader extends ListActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_preferences:
-                // show preferences
                 startActivity(new Intent(getApplicationContext(), MyNewsReaderSettings.class));
-
                 return true;
             case R.id.menu_update:
-                Toast.makeText(getApplicationContext(),
-                        "Clearing database and parsing selected feeds", Toast.LENGTH_LONG).show();
-                updateFeeds();
+                onUpdate();
                 return true;
             case R.id.menu_usesimple:
                 changeAndSaveListType(item, ID_SIMPLELIST);
-
-                // start measuring
-                MeasurementModule.startMeasurement(MeasurementModule.SIMPLE_LIST);
-
+                // // start measuring
+                // MeasurementModule.startMeasurement(MeasurementModule.SIMPLE_LIST);
                 fillData();
-
                 return true;
             case R.id.menu_usefisheye:
                 changeAndSaveListType(item, ID_FISHEYELIST);
-
-                // start measuring
-                MeasurementModule.startMeasurement(MeasurementModule.FISHEYE_LIST);
-
+                // // start measuring
+                // MeasurementModule.startMeasurement(MeasurementModule.FISHEYE_LIST);
                 fillData();
-
                 return true;
             case R.id.menu_usetree:
                 changeAndSaveListType(item, ID_TREEVIEWLIST);
-
-                // start measuring
-                MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
-
+                // // start measuring
+                // MeasurementModule.startMeasurement(MeasurementModule.TREE_VIEW_LIST);
                 // start treeview activity
                 startActivity(new Intent(getApplicationContext(), ExpandableList.class));
                 return true;
-            case R.id.menu_dumpmeasurements:
-                if (isExtStorageAvailable()) {
-                    new DumpMeasurementsTask().execute();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No external storage available",
-                            Toast.LENGTH_SHORT).show();
-                }
+                // case R.id.menu_dumpmeasurements:
+                // if (isExtStorageAvailable()) {
+                // new DumpMeasurementsTask().execute();
+                // } else {
+                // Toast.makeText(getApplicationContext(),
+                // "No external storage available",
+                // Toast.LENGTH_SHORT).show();
+                // }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -218,65 +224,100 @@ public class RSSNewsReader extends ListActivity {
             startActivity(new Intent(getApplicationContext(), MyNewsReaderSettings.class));
             // set firstrun false
             prefs.edit().putBoolean(KEY_FIRSTRUN, false).commit();
-            // get all feeds in, user has to manually update if he changed
-            // preferences
-            updateFeeds();
         }
-    }
-
-    /**
-     * Returns true if external storage is mounted with read/write access.
-     * 
-     * @return
-     */
-    private boolean isExtStorageAvailable() {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
      * Clears existing news items and parses the feeds which are set enabled in
      * the preferences table.
      */
-    private void updateFeeds() {
-        new Thread(new Runnable() {
-            public void run() {
-                mDbHelper.clearExistingFeeds();
-                Cursor prefs = mDbHelper.getPreferences();
-                prefs.moveToFirst();
+    private void onUpdate() {
+        if (mUpdateTask == null || mUpdateTask.getStatus() == AsyncTask.Status.FINISHED) {
+            mUpdateTask = (UpdateTask) new UpdateTask().execute();
+        } else {
+            Toast.makeText(getApplicationContext(), "Update in progress", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-                while (!prefs.isAfterLast()) {
+    private void onCancelUpdate() {
+        if (mUpdateTask != null && mUpdateTask.getStatus() == AsyncTask.Status.RUNNING) {
+            mUpdateTask.cancel(true);
+            mUpdateTask = null;
+        }
+    }
 
-                    // check if category is enabled for provider
-                    if (prefs.getInt(prefs.getColumnIndexOrThrow(DatabaseHelper.ENABLED)) == 1) {
+    private class UpdateTask extends AsyncTask<Void, Void, String> {
 
-                        // get encoding and category id
-                        Xml.Encoding encoding = Xml.Encoding.valueOf(prefs.getString(prefs
-                                .getColumnIndexOrThrow(DatabaseHelper.PREF_ENCODING)));
-                        int categoryid = prefs.getInt(prefs
-                                .getColumnIndexOrThrow(DatabaseHelper.PREF_CATEGORY_ID));
+        @Override
+        protected void onPreExecute() {
+            setProgressBarIndeterminateVisibility(true);
+            Toast.makeText(getApplicationContext(), "Updating feeds", Toast.LENGTH_SHORT).show();
+        }
 
-                        // open xml and parse it into the database
-                        try {
-                            InputStream in = getResources().getAssets().open(
-                                    prefs.getString(prefs
-                                            .getColumnIndexOrThrow(DatabaseHelper.FEEDPATH)));
-                            FeedParser.parseAtomStream(in, categoryid, mDbHelper, encoding);
-                        } catch (IOException e) {
-                            Toast.makeText(getApplicationContext(), "Could not open feed",
-                                    Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        } catch (SAXException e) {
-                            Toast.makeText(getApplicationContext(), "Could not parse feed",
-                                    Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
+        @Override
+        protected String doInBackground(Void... arg0) {
+            String errorMsg = null;
+            mDbHelper.clearExistingFeeds();
+            Cursor prefs = mDbHelper.getPreferences();
+            prefs.moveToFirst();
+
+            while (!prefs.isAfterLast()) {
+
+                // check if category is enabled for provider
+                if (prefs.getInt(prefs.getColumnIndexOrThrow(DatabaseHelper.ENABLED)) == 1) {
+
+                    // get encoding and category id
+                    Xml.Encoding encoding = Xml.Encoding.valueOf(prefs.getString(prefs
+                            .getColumnIndexOrThrow(DatabaseHelper.PREF_ENCODING)));
+                    int categoryid = prefs.getInt(prefs
+                            .getColumnIndexOrThrow(DatabaseHelper.PREF_CATEGORY_ID));
+
+                    URL url;
+                    try {
+                        url = new URL(prefs.getString(prefs
+                                .getColumnIndexOrThrow(DatabaseHelper.FEEDPATH)));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
 
-                    prefs.moveToNext();
+                    // open xml and parse it into the database
+                    try {
+                        URLConnection connection = url.openConnection();
+                        connection.setConnectTimeout(25000);
+                        connection.setReadTimeout(90000);
+                        InputStream in = connection.getInputStream();
+
+                        FeedParser.parseAtomStream(in, categoryid, mDbHelper, encoding);
+                    } catch (IOException e) {
+                        Log.e(TAG, e.getMessage(), e);
+                        errorMsg = e.getMessage();
+                    } catch (SAXException e) {
+                        Log.e(TAG, e.getMessage(), e);
+                        errorMsg = e.getMessage();
+                    }
                 }
-                prefs.close();
+
+                prefs.moveToNext();
             }
-        }).start();
+            prefs.close();
+
+            return errorMsg;
+        }
+
+        @Override
+        protected void onCancelled() {
+            setProgressBarIndeterminateVisibility(false);
+        }
+
+        @Override
+        protected void onPostExecute(String errorMsg) {
+            setProgressBarIndeterminateVisibility(false);
+            if (errorMsg != null) {
+                Toast.makeText(getApplicationContext(), "Updating feeds failed" + " - " + errorMsg,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
     private class DumpMeasurementsTask extends AsyncTask<Void, Void, String> {
@@ -319,9 +360,7 @@ public class RSSNewsReader extends ListActivity {
                 outStream = new FileOutputStream(file);
 
                 // write header for csv
-                measuretext =
-                    DatabaseHelper.MEASUREMENT_ID + ","
-                        + DatabaseHelper.LIST_TYPE + ","
+                measuretext = DatabaseHelper.MEASUREMENT_ID + "," + DatabaseHelper.LIST_TYPE + ","
                         + DatabaseHelper.MEASUREMENT_ITEM + "," + DatabaseHelper.MEASUREMENT_TIME
                         + "\n";
 
@@ -439,6 +478,55 @@ public class RSSNewsReader extends ListActivity {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Returns true if external storage is mounted with read/write access.
+     * 
+     * @return
+     */
+    private boolean isExtStorageAvailable() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_UPDATEFEEDS:
+                ProgressDialog updateProgress = new ProgressDialog(this);
+                updateProgress.setMessage("Updating feeds");
+                return updateProgress;
+        }
+        return super.onCreateDialog(id);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        saveUpdateTask(outState);
+    }
+
+    private void saveUpdateTask(Bundle outState) {
+        final UpdateTask task = mUpdateTask;
+        if (task != null && task.getStatus() != AsyncTask.Status.FINISHED) {
+            task.cancel(true);
+
+            outState.putBoolean(STATE_UPDATE_IN_PROGRESS, true);
+
+            mUpdateTask = null;
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle state) {
+        super.onRestoreInstanceState(state);
+        restoreUpdateTask(state);
+    }
+
+    private void restoreUpdateTask(Bundle state) {
+        if (state.getBoolean(STATE_UPDATE_IN_PROGRESS)) {
+            mUpdateTask = (UpdateTask) new UpdateTask().execute();
         }
     }
 }

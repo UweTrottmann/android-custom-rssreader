@@ -5,14 +5,14 @@ import org.far.twoduiproject.measurement.MeasurementModule;
 
 import android.app.ExpandableListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Demonstrates expandable lists backed by Cursors
@@ -53,22 +53,25 @@ public class ExpandableList extends ExpandableListActivity {
                 });
         setListAdapter(mAdapter);
     }
-    
+
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v,
-    		int groupPosition, int childPosition, long id) {
-    	//example of usage for MeasurementModule
-    	MeasurementModule.stopMeasurement(((TextView)v).getText().toString());
-    	Toast.makeText(getApplicationContext(), "Registered tap", Toast.LENGTH_SHORT).show();
-    	return true;
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition,
+            int childPosition, long id) {
+//        // stop measurement
+//        MeasurementModule.stopMeasurement(((TextView) v).getText().toString());
+        
+        // open article in browser
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mDbHelper.getItemLink(id)));
+        startActivity(myIntent);
+        return true;
     }
-    
+
     @Override
     protected void onStop() {
-    	
-    	MeasurementModule.destroySession();
-    	
-    	super.onStop();
+
+        MeasurementModule.destroySession();
+
+        super.onStop();
     }
 
     public class MyExpandableListAdapter extends SimpleCursorTreeAdapter {
