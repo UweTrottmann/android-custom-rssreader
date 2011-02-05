@@ -143,6 +143,22 @@ public class RSSNewsReader extends ListActivity {
         inflater.inflate(R.menu.newsreader_menu, menu);
         return true;
     }
+    
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        switch (getStoredListType()) {
+            case ID_SIMPLELIST:
+                menu.findItem(R.id.menu_usesimple).setChecked(true);
+                break;
+            case ID_FISHEYELIST:
+                menu.findItem(R.id.menu_usefisheye).setChecked(true);
+                break;
+            case ID_TREEVIEWLIST:
+                menu.findItem(R.id.menu_usetree).setChecked(true);
+                break;
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -204,6 +220,12 @@ public class RSSNewsReader extends ListActivity {
         SharedPreferences prefs = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
         prefs.edit().putInt(KEY_LISTTYPE, listtypeID).commit();
+    }
+    
+    private int getStoredListType(){
+        SharedPreferences prefs = PreferenceManager
+        .getDefaultSharedPreferences(getApplicationContext());
+        return prefs.getInt(KEY_LISTTYPE, ID_SIMPLELIST);
     }
 
     /**

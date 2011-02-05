@@ -27,9 +27,12 @@ public class NewsList extends ListActivity {
         mDbHelper = DatabaseHelper.getInstance(getApplicationContext());
 
         Bundle extras = getIntent().getExtras();
-        long categoryid = extras != null ? extras.getLong(DatabaseHelper.CATEGORY_ID) : null;
-
-        fillData(categoryid);
+        if (extras != null) {
+            long categoryid = extras.getLong(DatabaseHelper.CATEGORY_ID);
+            TextView title = (TextView)findViewById(R.id.textViewNewsListTitle);
+            title.setText(mDbHelper.getCategoryName(categoryid));
+            fillData(categoryid);
+        }               
 
     }
 
