@@ -170,6 +170,18 @@ public class DatabaseHelper {
         return db.rawQuery(query, null);
 
     }
+    
+    public String getCategoryName(long id){
+        Cursor category = db.query(CATEGORY_TABLE, new String[] {CATEGORY_NAME}, CATEGORY_ID + "=" + id, null, null, null, null);
+        if (category.getCount() == 0) {
+            category.close();
+            return "";
+        }
+        category.moveToFirst();
+        String categoryname = category.getString(category.getColumnIndexOrThrow(CATEGORY_NAME));
+        category.close();
+        return categoryname;
+    }
 
     /**
      * Returns the 10 most recent news items for a specified category in a
