@@ -69,6 +69,10 @@ public class PreferenceActivity extends Activity {
         preferenceListView.setAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice, categoryNameList));
         preferenceListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        for(int i= 0; i< categoryList.size(); i++){
+        	if(categoryList.get(i).isEnabled() ==1 )
+        		preferenceListView.setItemChecked(i, true);
+        }
         preferenceListView.setOnItemClickListener(preferenceListViewListener);
 
         Button saveButton = (Button) findViewById(R.id.save);
