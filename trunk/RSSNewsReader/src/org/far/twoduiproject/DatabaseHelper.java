@@ -163,7 +163,8 @@ public class DatabaseHelper {
      * @return
      */
     public Cursor getCategories() {
-        return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
+        //return db.query(CATEGORY_TABLE, null, null, null, null, null, null);
+    	return db.rawQuery("select distinct a.* from " + CATEGORY_TABLE +" a  inner join " + PREFERENCE_TABLE + " b on b." + PREF_CATEGORY_ID + " = a." + CATEGORY_ID + " where b." + ENABLED + " = 1" , null);
     }
 
     public Cursor getCategories(String query) {
