@@ -28,11 +28,12 @@ public class PreferenceActivity extends Activity {
 
     private ArrayList<Category> categoryList = new ArrayList<Category>();
 
+    private int providerid;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preference);
-        int providerid = 0;
 
         // For CNN, provider id = 1, For BBC, provider id = 0 - if preference
         // doesn't exist - always pick cnn as default
@@ -61,7 +62,7 @@ public class PreferenceActivity extends Activity {
             categoryList.add(new Category(preferenceCategory.getInt(0), preferenceCategory
                     .getString(1), preferenceCategory.getInt(2)));
         }
-        
+
         preferenceCategory.close();
 
         final ListView preferenceListView = (ListView) findViewById(R.id.prefList);
@@ -125,12 +126,12 @@ public class PreferenceActivity extends Activity {
             }
             if (disabledIds.length() != 0) {
                 disabledIds = disabledIds.substring(0, disabledIds.length() - 1);
-            }                   
+            }
 
             updateQueryEnabled = "update " + DatabaseHelper.PREFERENCE_TABLE
-                    + " set enabled = 1 where pref_categoryid in (" + enabledIds + ");";
+                    + " set enabled = 1 where pref_categoryid in (" + enabledIds + ") and " + DatabaseHelper.PREF_PROVIDERID + "=" + providerid + ";";
             updateQueryDisabled = "update " + DatabaseHelper.PREFERENCE_TABLE
-                    + " set enabled = 0 where pref_categoryid in (" + disabledIds + ");";
+                    + " set enabled = 0 where pref_categoryid in (" + disabledIds + ") and " + DatabaseHelper.PREF_PROVIDERID + "=" + providerid + ";";
 
             mDbHelper.changeCategoryState(updateQueryEnabled, updateQueryDisabled);
 
